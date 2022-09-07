@@ -22,9 +22,23 @@ const typeDefs = gql`
     comments: [Comment]
   }
 
+  type User {
+    _id: ID!
+    email: String!
+    password: String!
+    name: String!
+    items: ID
+  }
+
   type Query {
     items: [Item]
     item(_id: String): Item
+  }
+
+  type Mutation {
+    createItem(userId: ID!, name: String!, description: String!, location: String!, 
+      image: String): Item
+    addItemToUser(_id: String!, itemId: String!): User
   }
 `;
 
