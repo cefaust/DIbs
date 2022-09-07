@@ -13,7 +13,7 @@ db.once('open', async () => {
 
         for (let i = 0; i < userData.length; i++) {
             const { _id } = await Item.create(itemData[i]);
-            const email = userData[i];
+            const email = userData[i].email;
             const user = await User.findOneAndUpdate(
                 { email: email },
                 {
