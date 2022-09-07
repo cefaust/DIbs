@@ -1,27 +1,30 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type Tech {
-    _id: ID!
-    name: String!
+  type Comment {
+    content: String!
+    date_created: String!
   }
 
-  type Matchup {
+  type Dib {
+    date_dibbed: String
+    dibbed_by: ID
+  }
+
+  type Item {
     _id: ID!
-    tech1: String!
-    tech2: String!
-    tech1_votes: Int
-    tech2_votes: Int
+    name: String!
+    description: String!
+    location: String!
+    image: String
+    date_created: String!
+    dibbed: [Dib]
+    comments: [Comment]
   }
 
   type Query {
-    tech: [Tech]
-    matchups(_id: String): [Matchup]
-  }
-
-  type Mutation {
-    createMatchup(tech1: String!, tech2: String!): Matchup
-    createVote(_id: String!, techNum: Int!): Matchup
+    items: [Item]
+    item(_id: String): Item
   }
 `;
 

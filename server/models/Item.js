@@ -25,21 +25,28 @@ const itemSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  date_dibbed: {
-    type: Date,
-  },
+  dibbed: [
+    {
+      date_dibbed: {
+        type: Date,
+      },
+      dibbed_by: {
+        type: Schema.Types.ObjectId
+      }
+    },
+  ],
   comments: [
-        {
-            content: {
-                type: String,
-                null: false,
-            },
-            date_created: {
-                type: Date,
-                default: Date.now,
-            },
-        },
-    ],
+    {
+      content: {
+        type: String,
+        null: false,
+      },
+      date_created: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+  ],
 });
 
 const Item = model('Item', itemSchema);
