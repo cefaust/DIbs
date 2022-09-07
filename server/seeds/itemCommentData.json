@@ -1,0 +1,35 @@
+[
+    {
+        "name": "item1",
+        "description": "this is a great description for item 1",
+        "location": "Everett, WA",
+        "image": "placeholder_for_item_1",
+        "comments": [
+            {
+                "content": "item 1 looks amazing, I want it!"
+            }
+        ]
+    },
+    {
+        "name": "item2",
+        "description": "what another fantastic description for item 2",
+        "location": "Seattle, WA",
+        "image": "placeholder_for_item_2",
+        "comments": [
+            {
+                "content": "item 2 looks alright I guess... I might call dibs."
+            }
+        ]
+    },
+    {
+        "name": "item3",
+        "description": "This description for item 3 is not great.",
+        "location": "Bellingham, WA",
+        "image": "placeholder_for_item_3",
+        "comments": [
+            {
+                "content": "item 3 is going to go fast.."
+            }
+        ]
+    }
+]

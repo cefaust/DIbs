@@ -8,13 +8,13 @@ const itemSchema = new Schema({
     null: false,
   },
   description: {
-    type: Text,
+    type: String,
     required: true,
     minlength: 20,
     null: false,
   },
   location: {
-    type: Text,
+    type: String,
     required: true,
     null: false,
   },
@@ -28,14 +28,10 @@ const itemSchema = new Schema({
   date_dibbed: {
     type: Date,
   },
-  user_id: {
-    type: Schema.ObjectId,
-    required: true,
-  },
   comments: [
         {
             content: {
-                type: Text,
+                type: String,
                 null: false,
             },
             date_created: {
