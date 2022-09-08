@@ -1,13 +1,33 @@
 const db = require('../config/connection');
-const { Tech } = require('../models');
+const { Item, User } = require('../models');
 
-const techData = require('./techData.json');
+const itemData = require('./itemCommentData.json');
+const userData = require('./userData.json');
 
 db.once('open', async () => {
-  await Tech.deleteMany({});
+    try {
+        await Item.deleteMany({});
+        await User.deleteMany({});
 
-  const technologies = await Tech.insertMany(techData);
+        await User.create(userData);
 
-  console.log('Technologies seeded!');
+        for (let i = 0; i < userData.length; i++) {
+            const { _id } = await Item.create(itemData[i]);
+            const email = userData[i].email;
+            const user = await User.findOneAndUpdate(
+                { email: email },
+                {
+                    $addToSet: {
+                        items: _id,
+                    }
+                }
+            )
+        }
+    } catch (err) {
+        console.error(err);
+        process.exit(1);
+    }
+
+  console.log('Everything seeded!');
   process.exit(0);
 });

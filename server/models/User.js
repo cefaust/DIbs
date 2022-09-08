@@ -5,15 +5,22 @@ const userSchema = new Schema({
     type: String,
     required: true,
     unique: true,
+    match: [/.+@.+\..+/, 'Must match an email address!'],
   },
   password: {
     type: String,
     required: true,
   },
   name: {
-    type: Number,
+    type: String,
     required: true,
   },
+  items: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'item',
+    }
+  ]
 });
 
 const User = model('User', userSchema);
