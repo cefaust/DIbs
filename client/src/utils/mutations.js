@@ -14,16 +14,13 @@ export const CREATE_ITEM = gql`
 `
 
 export const ADD_ITEM_TO_USER = gql`
-  mutation addItemToUser($_id: String!, $itemId: String!) {
-    addItemToUser(_id: $_id, itemId: $itemId) {
+  mutation addItemToUser($userId: ID!, $itemId: ID!) {
+    addItemToUser(userId: $userId, itemId: $itemId) {
       _id
       email
       password
       name
-      items {
-        item
-      }
+      items
     }
   }
-`
-;
+`;
