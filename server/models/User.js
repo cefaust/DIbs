@@ -18,7 +18,7 @@ const userSchema = new Schema({
   },
   dibsCalled: [
     {
-      type: String,
+      type: Schema.Types.ObjectId,
     }
   ],
   items: [

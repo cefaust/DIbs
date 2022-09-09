@@ -42,6 +42,7 @@ const typeDefs = gql`
     addItemToUser(userId: ID!, itemId: ID!): User
     deleteItem(itemId: ID!): Item
     updateItem(_id: ID!, name: String, description: String, location: String, image: String): Item
+    addDibToUser(userId: ID!, itemId: ID!): User
   }
 `;
 
