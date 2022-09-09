@@ -38,3 +38,33 @@ export const QUERY_ITEM = gql`
     }
   }
 `;
+
+export const QUERY_USERS = gql`
+  query users {
+    _id
+    email
+    name
+    items {
+      _id
+      name
+      description
+    }
+  }
+  `;
+
+export const QUERY_USER= gql`
+  query user {
+    _id
+    email
+    name
+    items {
+      _id
+      name
+      description
+      location
+      image
+      date_created
+      date_dibbed
+    }
+  }
+  `;

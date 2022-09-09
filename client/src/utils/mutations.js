@@ -36,3 +36,25 @@ export const DELETE_ITEM = gql`
     }
   }
 `;
+
+export const CREATE_USER = gql`
+  mutation createUser($email: String!, $password: String!, $name: String!) {
+    createUser(email: $email, password: $password, name: $name) {
+      user {
+        _id
+        email
+      }
+    }
+  }
+`;
+
+export const LOGIN_USER = gql`
+mutation login($email: String! $password: String!) {
+  login(email: $email, password: $password) {
+    user {
+      _id
+      email
+    }
+  }
+}
+`;
