@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import NavTabs from './NavTabs';
 import Home from  './pages/Home';
-import Login from './pages/Login'
-import Profile from './pages/Profile'
+import Login from './pages/Login';
+import Profile from './pages/Profile';
+import SignUp from './pages/SignUp';
 
 export default function DibsContainer() {
   const [currentPage, setCurrentPage] = useState('Home');
@@ -13,6 +14,9 @@ export default function DibsContainer() {
     } if (currentPage === 'Profile') {
       return <Profile />
     }
+     if (currentPage === 'SignUp') {
+       return <SignUp />
+     }
     return <Home />
 
   };
