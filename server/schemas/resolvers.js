@@ -23,11 +23,18 @@ const resolvers = {
       return user;
     },
     deleteItem: async (parent, args) => {
-      console.log(args.itemId);
       const item = await Item.findOneAndRemove({ _id: args.itemId })
       User.findOneAndUpdate(
         { items: args.itemId },
         { $pull: { items: args.itemId } },
+        { new: true }
+      )
+      return item;
+    },
+    updateItem: async (parent, args) => {
+      const item = await Item.findOneAndUpdate(
+        { _id: args._id },
+        { $set: args },
         { new: true }
       )
       return item;

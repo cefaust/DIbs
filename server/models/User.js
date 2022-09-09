@@ -16,6 +16,11 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  dibsCalled: [
+    {
+      type: String,
+    }
+  ],
   items: [
     {
       type: Schema.Types.ObjectId,
