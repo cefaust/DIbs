@@ -1,10 +1,17 @@
+import { useState } from 'react'
+
 export default function Profile() {
+const [ProfilePage, setProfilePage] = useState('Home')
+
+
+
   return (
     <div>
+      <div >
       <h1>Profile</h1>
-      <p>
-        Here there will be 2 tabs in navbar that will show the items i have posted and one to list items i have called dibs
-      </p>
+      {ProfilePage === 'Home' ? <button onClick={() => setProfilePage('Dibs')}>Dibs</button> 
+      : <button onClick={() => setProfilePage('Home')}>My Posts</button>}
+      </div>
     </div>
   );
 }
