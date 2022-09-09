@@ -20,6 +20,7 @@ export const ADD_ITEM_TO_USER = gql`
       email
       password
       name
+      dibsCalled
       items
     }
   }
@@ -28,6 +29,18 @@ export const ADD_ITEM_TO_USER = gql`
 export const DELETE_ITEM = gql`
   mutation deleteItem($itemId: ID!) {
     deleteItem(itemId: $itemId) {
+      name
+      description
+      location
+      image
+      dibbed
+    }
+  }
+`;
+
+export const UPDATE_ITEM = gql`
+  mutation updateItem($_id: ID!, $name: String, $description, $location: String, $image: String) {
+    updateItem(_id: $_id, name: $name, description: $description, location: $location, image: $image) {
       name
       description
       location

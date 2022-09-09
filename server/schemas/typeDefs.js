@@ -27,6 +27,7 @@ const typeDefs = gql`
     email: String!
     password: String!
     name: String!
+    dibsCalled: [String]
     items: [ID]
   }
 
@@ -40,6 +41,7 @@ const typeDefs = gql`
       image: String): Item
     addItemToUser(userId: ID!, itemId: ID!): User
     deleteItem(itemId: ID!): Item
+    updateItem(_id: ID!, name: String, description: String, location: String, image: String): Item
   }
 `;
 
