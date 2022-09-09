@@ -50,6 +50,18 @@ export const UPDATE_ITEM = gql`
   }
 `;
 
+export const ADD_DIB_TO_USER = gql`
+  mutation addDibToUser($userId: ID!, $itemId: ID!) {
+    addDibToUser(userId: $userId, itemId: $itemId) {
+      email
+      password
+      name
+      dibsCalled
+      items
+    }
+  } 
+`;
+
 export const CREATE_USER = gql`
   mutation createUser($email: String!, $password: String!, $name: String!) {
     createUser(email: $email, password: $password, name: $name) {

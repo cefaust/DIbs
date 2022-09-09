@@ -39,6 +39,14 @@ const resolvers = {
       )
       return item;
     },
+    addDibToUser: async (parent, args) => {
+      const user = await User.findOneAndUpdate(
+        { _id: args.userId },
+        { $addToSet: { dibsCalled: args.itemId } },
+        { new: true }
+      )
+      return user;
+    }
   },
 };
 
