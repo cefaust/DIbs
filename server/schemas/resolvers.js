@@ -21,7 +21,17 @@ const resolvers = {
         { $addToSet: { items: args.itemId } }
       );
       return user;
-    }
+    },
+    deleteItem: async (parent, args) => {
+      console.log(args.itemId);
+      const item = await Item.findOneAndRemove({ _id: args.itemId })
+      User.findOneAndUpdate(
+        { items: args.itemId },
+        { $pull: { items: args.itemId } },
+        { new: true }
+      )
+      return item;
+    },
   },
 };
 
