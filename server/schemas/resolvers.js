@@ -15,14 +15,10 @@ const resolvers = {
       const item = await Item.create(args);
       return item;
     },
-    addItemToUser: async (parent, { _id, itemId }) => {
+    addItemToUser: async (parent, args) => {
       const user = await User.findOneAndUpdate(
-        { _id },
-        {
-          $addToSet: {
-            items: itemId
-          }
-        }
+        { _id: args.userId },
+        { $addToSet: { items: args.itemId } }
       );
       return user;
     }
