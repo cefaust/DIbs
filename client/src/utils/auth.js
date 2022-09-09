@@ -1,7 +1,7 @@
 // This import will decode the token and get user's info 
 import decode from 'jwt-decode';
 
-class Auth {
+class AuthService {
     // gets user data
     getProfile() {
         return decode(this.getToken())
@@ -43,4 +43,4 @@ class Auth {
       }
 }
 
-export default Auth
+export default AuthService

@@ -1,4 +1,5 @@
 const { Item, User } = require('../models');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
@@ -46,6 +47,12 @@ const resolvers = {
         { new: true }
       )
       return user;
+    },
+    createUser: async (parent, args) => {
+      const user = await User.create(args)
+      console.log(user);
+      const token = signToken(user)
+      return {token, user};
     }
   },
 };
