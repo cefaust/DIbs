@@ -23,6 +23,18 @@ export const ADD_ITEM_TO_USER = gql`
       items
     }
   }
+`
+
+export const DELETE_ITEM = gql`
+  mutation deleteItem($itemId: ID!) {
+    deleteItem(itemId: $itemId) {
+      name
+      description
+      location
+      image
+      dibbed
+    }
+  }
 `;
 
 export const CREATE_USER = gql`
