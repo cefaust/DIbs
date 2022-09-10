@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 // import { useMutation } from '@apollo/client';
 
 
@@ -18,10 +18,10 @@ const HomeList = ({ dibs, title }) => {
                 <div className="card-body">
                     <h5 className="card-title">{dib.name}</h5>
                     <p className="card-text">{dib.description}</p>
-                    <Link
-                    className="btn btn-primary"
-                    to={`/dibs/${dib.id}`}> View Item
-                    </Link>
+                    {/*<Link*/}
+                    {/*className="btn btn-primary"*/}
+                    {/*to={`/dibs/${dib.id}`}> View Item*/}
+                    {/*</Link>*/}
                     <a href="" className="btn btn-primary"> 
                     Add to Dibs 
                     </a>

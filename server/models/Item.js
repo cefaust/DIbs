@@ -37,6 +37,10 @@ const itemSchema = new Schema({
   ],
   comments: [
     {
+      comment_by : {
+        type: Schema.Types.ObjectId,
+        null: false,
+      },
       content: {
         type: String,
         null: false,

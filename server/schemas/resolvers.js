@@ -10,6 +10,13 @@ const resolvers = {
       const params = _id ? { _id } : {};
       return Item.findOne(params);
     },
+    users: async () => {
+      return User.find({});
+    },
+    user: async (parent, { _id }) => {
+      const params = _id ? { _id } : {};
+      return User.findOne(params);
+    },
   },
   Mutation: {
     createItem: async (parent, args) => {
@@ -19,7 +26,16 @@ const resolvers = {
     addItemToUser: async (parent, args) => {
       const user = await User.findOneAndUpdate(
         { _id: args.userId },
-        { $addToSet: { items: args.itemId } }
+        { $addToSet: { items: args.itemId } },
+        { new: true }
+      );
+      return user;
+    },
+    removeItemFromUser: async (parent, args) => {
+      const user = await User.findOneAndUpdate(
+        { _id: args.userId },
+        { $pull: { items: args.itemId } },
+        { new: true }
       );
       return user;
     },
@@ -36,6 +52,40 @@ const resolvers = {
       const item = await Item.findOneAndUpdate(
         { _id: args._id },
         { $set: args },
+        { new: true }
+      )
+      return item;
+    },
+    addDibToItem: async (parent, args) => {
+      const date = Date.now();
+      const item = await Item.findOneAndUpdate(
+        { _id: args.itemId },
+        { $addToSet: { dibbed: { date_dibbed: date, dibbed_by: args.dibbedBy } } },
+        { new: true }
+      )
+      return item;
+    },
+    removeDibFromItem: async (parent, args) => {
+      const item = await Item.findOneAndUpdate(
+        { _id: args.itemId },
+        { $pull: { dibbed: { dibbed_by: args.dibbedBy } } },
+        { new: true }
+      )
+      return item;
+    },
+    addCommentToItem: async (parent, args) => {
+      const date = Date.now();
+      const item = await Item.findOneAndUpdate(
+        { _id: args.itemId },
+        { $addToSet: { comments: { comment_by: args.commenterId, content: args.content, date_created: date } } },
+        { new: true }
+      )
+      return item;
+    },
+    removeCommentFromItem: async (parent, args) => {
+      const item = await Item.findOneAndUpdate(
+        { _id: args.itemId },
+        { $pull: { comments: { comment_by: args.commenterId } } },
         { new: true }
       )
       return item;
