@@ -58,6 +58,14 @@ const resolvers = {
       )
       return item;
     },
+    removeDibFromItem: async (parent, args) => {
+      const item = await Item.findOneAndUpdate(
+        { _id: args.itemId },
+        { $pull: { dibbed: { dibbed_by: args.dibbedBy } } },
+        { new: true }
+      )
+      return item;
+    },
     addDibToUser: async (parent, args) => {
       const user = await User.findOneAndUpdate(
         { _id: args.userId },

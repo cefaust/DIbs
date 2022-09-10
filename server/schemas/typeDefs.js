@@ -49,6 +49,7 @@ const typeDefs = gql`
     deleteItem(itemId: ID!): Item
     updateItem(_id: ID!, name: String, description: String, location: String, image: String): Item
     addDibToItem(itemId: ID!, dibbedBy: ID!): Item
+    removeDibFromItem(itemId: ID!, dibbedBy: ID!): Item
     addDibToUser(userId: ID!, itemId: ID!): User
     removeDibFromUser(userId: ID!, itemId: ID!): User
     createUser( name: String!, password: String!, email: String!): Auth
