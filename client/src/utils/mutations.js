@@ -83,6 +83,48 @@ export const ADD_DIB_TO_ITEM = gql`
   }
 `;
 
+export const REMOVE_DIB_FROM_ITEM = gql`
+  mutation removeDibFromItem($itemId: ID!, $dibbedBy: ID!) {
+    removeDibFromItem(itemId: $itemId, dibbedBy: $dibbedBy) {
+      _id
+      name
+      description
+      location
+      image
+      dibbed
+      comments
+    }
+  }
+`;
+
+export const ADD_COMMENT_TO_ITEM = gql`
+  mutation addCommentToItem($commenterId: ID!, $itemId: ID!, $content: String!) {
+    addCommentToItem(commenterId: $commenterId, itemId: $itemId, content: $content) {
+      _id
+      name
+      description
+      location
+      image
+      dibbed
+      comments
+    }
+  }
+`;
+
+export const REMOVE_COMMENT_FROM_ITEM = gql`
+  mutation removeCommentFromItem($commenterId: ID!, $itemId: ID!) {
+    removeCommentFromItem(commenterId: $commenterId, itemId: $itemId) {
+      _id
+      name
+      description
+      location
+      image
+      dibbed
+      comments
+    }
+  }
+`;
+
 export const ADD_DIB_TO_USER = gql`
   mutation addDibToUser($userId: ID!, $itemId: ID!) {
     addDibToUser(userId: $userId, itemId: $itemId) {
