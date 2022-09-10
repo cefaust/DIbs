@@ -1,8 +1,15 @@
 import React from 'react';
 import './App.css';
-import DibsContainer from './components/DibsContainer';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import {ApolloProvider, ApolloClient, InMemoryCache, createHttpLink} from '@apollo/client';
 import {setContext} from '@apollo/client/link/context';
+
+import Home from './pages/Home';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import Profile from './pages/Profile';
+import NoMatch from './pages/NoMatch';
+import NavTabs from './components/NavTabs';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -28,10 +35,34 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-    <div className="App">
-      <DibsContainer />
-    </div>
-      </ApolloProvider>
+      <Router>
+        <div>
+            <NavTabs />
+            <Routes>
+              <Route
+                path="/"
+                element={<Home />}
+              />
+              <Route
+                path="/login"
+                element={<Login />}
+              />
+              <Route
+                path="/signup"
+                element={<SignUp />}
+              />
+              <Route
+                path='/Profile'
+                element={<Profile />}
+              />
+              <Route
+                path="*"
+                element={<NoMatch />}
+              />
+            </Routes>
+        </div>
+      </Router>
+    </ApolloProvider>
   );
 }
 
