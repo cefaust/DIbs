@@ -9,6 +9,8 @@ export const CREATE_ITEM = gql`
       description
       location
       image
+      dibbed
+      comments
     }
   }
 `
@@ -42,11 +44,13 @@ export const REMOVE_ITEM_FROM_USER = gql`
 export const DELETE_ITEM = gql`
   mutation deleteItem($itemId: ID!) {
     deleteItem(itemId: $itemId) {
+      _id
       name
       description
       location
       image
       dibbed
+      comments
     }
   }
 `;
@@ -54,11 +58,27 @@ export const DELETE_ITEM = gql`
 export const UPDATE_ITEM = gql`
   mutation updateItem($_id: ID!, $name: String, $description: String, $location: String, $image: String) {
     updateItem(_id: $_id, name: $name, description: $description, location: $location, image: $image) {
+      _id
       name
       description
       location
       image
       dibbed
+      comments
+    }
+  }
+`;
+
+export const ADD_DIB_TO_ITEM = gql`
+  mutation addDibToItem($itemId: ID!, $dibbedBy: ID!) {
+    addDibToItem(itemId: $itemId, dibbedBy: $dibbedBy) {
+      _id
+      name
+      description
+      location
+      image
+      dibbed
+      comments
     }
   }
 `;
@@ -66,6 +86,7 @@ export const UPDATE_ITEM = gql`
 export const ADD_DIB_TO_USER = gql`
   mutation addDibToUser($userId: ID!, $itemId: ID!) {
     addDibToUser(userId: $userId, itemId: $itemId) {
+      _id
       email
       password
       name
@@ -78,6 +99,7 @@ export const ADD_DIB_TO_USER = gql`
 export const REMOVE_DIB_FROM_USER = gql`
   mutation removeDibFromUser($userId: ID!, $itemId: ID!) {
     removeDibFromUser(userId: $userId, itemId: $itemId) {
+      _id
       email
       password
       name
@@ -95,6 +117,8 @@ export const CREATE_USER = gql`
         email
         password
         name
+        dibsCalled
+        items
       }
     }
   }
@@ -107,6 +131,9 @@ mutation login($email: String! $password: String!) {
       _id
       email
       password
+      name
+      dibsCalled
+      items
     }
   }
 }
