@@ -66,6 +66,23 @@ const resolvers = {
       )
       return item;
     },
+    addCommentToItem: async (parent, args) => {
+      const date = Date.now();
+      const item = await Item.findOneAndUpdate(
+        { _id: args.itemId },
+        { $addToSet: { comments: { comment_by: args.commenterId, content: args.content, date_created: date } } },
+        { new: true }
+      )
+      return item;
+    },
+    removeCommentFromItem: async (parent, args) => {
+      const item = await Item.findOneAndUpdate(
+        { _id: args.itemId },
+        { $pull: { comments: { comment_by: args.commenterId } } },
+        { new: true }
+      )
+      return item;
+    },
     addDibToUser: async (parent, args) => {
       const user = await User.findOneAndUpdate(
         { _id: args.userId },
