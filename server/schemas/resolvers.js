@@ -49,6 +49,15 @@ const resolvers = {
       )
       return item;
     },
+    addDibToItem: async (parent, args) => {
+      const date = Date.now();
+      const item = await Item.findOneAndUpdate(
+        { _id: args.itemId },
+        { $addToSet: { dibbed: { date_dibbed: date, dibbed_by: args.dibbedBy } } },
+        { new: true }
+      )
+      return item;
+    },
     addDibToUser: async (parent, args) => {
       const user = await User.findOneAndUpdate(
         { _id: args.userId },
