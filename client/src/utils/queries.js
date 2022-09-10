@@ -48,6 +48,10 @@ export const QUERY_USERS = gql`
       _id
       name
       description
+      location
+      image
+      date_created
+      date_dibbed
     }
   }
   `;
