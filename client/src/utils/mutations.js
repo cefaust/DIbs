@@ -39,7 +39,7 @@ export const DELETE_ITEM = gql`
 `;
 
 export const UPDATE_ITEM = gql`
-  mutation updateItem($_id: ID!, $name: String, $description, $location: String, $image: String) {
+  mutation updateItem($_id: ID!, $name: String, $description: String, $location: String, $image: String) {
     updateItem(_id: $_id, name: $name, description: $description, location: $location, image: $image) {
       name
       description
