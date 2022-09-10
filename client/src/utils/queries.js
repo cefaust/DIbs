@@ -23,7 +23,7 @@ export const QUERY_ITEMS = gql`
 
 export const QUERY_ITEM = gql`
   query item($_id: String) {
-    item($id: $_id) {
+    item(id: $_id) {
       _id
       name
       description
