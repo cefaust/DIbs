@@ -19,7 +19,16 @@ const resolvers = {
     addItemToUser: async (parent, args) => {
       const user = await User.findOneAndUpdate(
         { _id: args.userId },
-        { $addToSet: { items: args.itemId } }
+        { $addToSet: { items: args.itemId } },
+        { new: true }
+      );
+      return user;
+    },
+    removeItemFromUser: async (parent, args) => {
+      const user = await User.findOneAndUpdate(
+        { _id: args.userId },
+        { $pull: { items: args.itemId } },
+        { new: true }
       );
       return user;
     },
