@@ -34,6 +34,8 @@ const typeDefs = gql`
   type Query {
     items: [Item]
     item(_id: String): Item
+    users: [User]
+    user(_id: String): User
   }
   
   type Auth {
