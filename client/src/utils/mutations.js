@@ -62,6 +62,18 @@ export const ADD_DIB_TO_USER = gql`
   } 
 `;
 
+export const REMOVE_DIB_FROM_USER = gql`
+  mutation removeDibFromUser($userId: ID!, $itemId: ID!) {
+    removeDibFromUser(userId: $userId, itemId: $itemId) {
+      email
+      password
+      name
+      dibsCalled
+      items
+    }
+  } 
+`;
+
 export const CREATE_USER = gql`
   mutation createUser($email: String!, $password: String!, $name: String!) {
     createUser(email: $email, password: $password, name: $name) {

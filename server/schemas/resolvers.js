@@ -48,6 +48,14 @@ const resolvers = {
       )
       return user;
     },
+    removeDibFromUser: async (parent, args) => {
+      const user = await User.findOneAndUpdate(
+        { _id: args.userId },
+        { $pull: { dibsCalled: args.itemId } },
+        { new: true }
+      )
+      return user;
+    },
     createUser: async (parent, args) => {
       const user = await User.create(args)
       console.log(user);

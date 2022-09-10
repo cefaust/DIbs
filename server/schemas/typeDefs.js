@@ -45,10 +45,10 @@ const typeDefs = gql`
     createItem(userId: ID!, name: String!, description: String!, location: String!, 
       image: String): Item
     addItemToUser(userId: ID!, itemId: ID!): User
-    createUser( name: String!, password: String!, email: String!): Auth
     deleteItem(itemId: ID!): Item
     updateItem(_id: ID!, name: String, description: String, location: String, image: String): Item
     addDibToUser(userId: ID!, itemId: ID!): User
+    removeDibFromUser(userId: ID!, itemId: ID!): User
     createUser( name: String!, password: String!, email: String!): Auth
   }
 `;
