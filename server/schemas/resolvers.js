@@ -10,6 +10,13 @@ const resolvers = {
       const params = _id ? { _id } : {};
       return Item.findOne(params);
     },
+    users: async () => {
+      return User.find({});
+    },
+    user: async (parent, { _id }) => {
+      const params = _id ? { _id } : {};
+      return User.findOne(params);
+    },
   },
   Mutation: {
     createItem: async (parent, args) => {
