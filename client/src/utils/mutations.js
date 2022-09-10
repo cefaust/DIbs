@@ -26,6 +26,19 @@ export const ADD_ITEM_TO_USER = gql`
   }
 `
 
+export const REMOVE_ITEM_FROM_USER = gql`
+  mutation removeItemFromUser($userId: ID!, $itemId: ID!) {
+    removeItemFromUser(userId: $userId, itemId: $itemId) {
+      _id
+      email
+      password
+      name
+      dibsCalled
+      items
+    }
+  }
+`
+
 export const DELETE_ITEM = gql`
   mutation deleteItem($itemId: ID!) {
     deleteItem(itemId: $itemId) {
@@ -39,7 +52,7 @@ export const DELETE_ITEM = gql`
 `;
 
 export const UPDATE_ITEM = gql`
-  mutation updateItem($_id: ID!, $name: String, $description, $location: String, $image: String) {
+  mutation updateItem($_id: ID!, $name: String, $description: String, $location: String, $image: String) {
     updateItem(_id: $_id, name: $name, description: $description, location: $location, image: $image) {
       name
       description
