@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CREATE_USER } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
+import {Link} from 'react-router-dom';
 
 export default function SignUp(props) {
   const [formState, setFormState] = useState({ name: '', email: '', password: '' });
@@ -70,7 +71,9 @@ export default function SignUp(props) {
                 <button type="submit" className="btn btn-primary btn-block mb-4">
                   Sign up
                 </button>
-                {/*<p>Need to Login? <a href='#Login' className="link-info">Login here</a></p>*/}
+                <p>Need to Login? <Link to='/Login'>
+                  Log In
+                </Link></p>
               </form>
             </div>
           </div>

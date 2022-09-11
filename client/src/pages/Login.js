@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
-// import { useMutation } from '@apollo/client';
-// import { Link } from 'react-router-dom';
-// import { LOGIN } from '../utils/mutations';
-// import Auth from '../utils/auth';
+import { useMutation } from '@apollo/client';
+import { Link } from 'react-router-dom';
+import { LOGIN_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
 
 export default function Login(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
-  // const [login, { error }] = useMutation(LOGIN);
+  const [login, { error }] = useMutation(LOGIN_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-  //   try {
-  //     const mutationResponse = await login({
-  //       variables: { email: formState.email, password: formState.password },
-  //     });
-  //     const token = mutationResponse.data.login.token;
-  //     Auth.login(token);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
+    try {
+      const mutationResponse = await login({
+        variables: { email: formState.email, password: formState.password },
+      });
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleChange = (event) => {
@@ -36,7 +36,7 @@ export default function Login(props) {
           <h2 className="fw-bold mb-5">Please Login!</h2>
           <form onSubmit={handleFormSubmit}>
             <div className="form-outline mb-2">
-              <label className="form-label" for="form3Example3">Email address</label>
+              <label className="form-label">Email address</label>
               <input
                 placeholder= 'example@example.com'
                 type= 'email'
@@ -47,7 +47,7 @@ export default function Login(props) {
               />
             </div>
             <div className="form-outline mb-4">
-              <label className="form-label" for="form3Example4">Password</label>
+              <label className="form-label">Password</label>
               <input
                 placeholder= '*****'
                 type= 'password'
@@ -58,9 +58,12 @@ export default function Login(props) {
               />
             </div>
             <button type="submit" className="btn btn-primary btn-block mb-4">
-              Sign up
+              Log In
             </button>
           </form>
+          <p >Don't have an account? <Link to='/SignUp'>
+            Register Here
+          </Link></p>
         </div>
       </div>
     </div>
