@@ -18,7 +18,7 @@ const SingleItem = () => {
 
   const { loading, data } = useQuery(QUERY_ITEM, {
     // pass URL parameter
-    variables: { id : itemId },
+    variables: { _id : itemId },
   });
 
   const item = data?.item || {};

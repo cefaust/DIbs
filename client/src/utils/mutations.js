@@ -9,8 +9,15 @@ export const CREATE_ITEM = gql`
       description
       location
       image
-      dibbed
-      comments
+      dibbed {
+        date_dibbed
+        dibbed_by
+      }
+      comments {
+        comment_by
+        content
+        date_created
+      }
     }
   }
 `
@@ -49,8 +56,11 @@ export const DELETE_ITEM = gql`
       description
       location
       image
-      dibbed
-      comments
+      dibbed {
+        date_dibbed
+        dibbed_by
+      }
+      comments 
     }
   }
 `;
@@ -63,8 +73,15 @@ export const UPDATE_ITEM = gql`
       description
       location
       image
-      dibbed
-      comments
+      dibbed {
+        date_dibbed
+        dibbed_by
+      }
+      comments {
+        comment_by
+        content
+        date_created
+      }
     }
   }
 `;
@@ -77,8 +94,15 @@ export const ADD_DIB_TO_ITEM = gql`
       description
       location
       image
-      dibbed
-      comments
+      dibbed {
+        date_dibbed
+        dibbed_by
+      }
+      comments {
+        comment_by
+        content
+        date_created
+      }
     }
   }
 `;
@@ -91,8 +115,15 @@ export const REMOVE_DIB_FROM_ITEM = gql`
       description
       location
       image
-      dibbed
-      comments
+      dibbed {
+        date_dibbed
+        dibbed_by
+      }
+      comments {
+        comment_by
+        content
+        date_created
+      }
     }
   }
 `;
@@ -105,8 +136,15 @@ export const ADD_COMMENT_TO_ITEM = gql`
       description
       location
       image
-      dibbed
-      comments
+      dibbed {
+        date_dibbed
+        dibbed_by
+      }
+      comments {
+        comment_by
+        content
+        date_created
+      }
     }
   }
 `;
@@ -119,8 +157,15 @@ export const REMOVE_COMMENT_FROM_ITEM = gql`
       description
       location
       image
-      dibbed
-      comments
+      dibbed {
+        date_dibbed
+        dibbed_by
+      }
+      comments {
+        comment_by
+        content
+        date_created
+      }
     }
   }
 `;

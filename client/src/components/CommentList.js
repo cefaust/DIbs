@@ -1,8 +1,11 @@
 import React from 'react';
 
-import { ADD_COMMENT_TO_ITEM, REMOVE_COMMENT_FROM_ITEM } from '../utils/mutations';
+import { REMOVE_COMMENT_FROM_ITEM } from '../utils/mutations';
+
 
 const CommentList = ({ comments = [] }) => {
+
+
   console.log(comments);
   if (!comments.length) {
     return <h3>No Comments Yet</h3>;
@@ -22,7 +25,7 @@ const CommentList = ({ comments = [] }) => {
             <div key={comment._id} className="col-12 mb-3 pb-3">
               <div className="p-3 bg-dark text-light">
                 <h5 className="card-header">
-                  An anonymous user commented{' '}
+                  an anonymous user commented{' '}
                   <span style={{ fontSize: '0.825rem' }}>
                     on {comment.date_created}
                   </span>
