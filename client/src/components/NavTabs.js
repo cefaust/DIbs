@@ -9,7 +9,7 @@ function NavTabs({currentPage}) {
       return (
         <ul className='nav nav-pills'>
           <li className='nav-item'>
-            <Link to='/Home'>
+            <Link to='/'>
               Home
             </Link>
           </li>
@@ -36,7 +36,7 @@ function NavTabs({currentPage}) {
       return (
         <ul className='nav nav-pills'>
           <li className='nav-item'>
-            <Link className='nav-link' to='/Home'>
+            <Link className='nav-link' to='/'>
               Home
             </Link>
           </li>

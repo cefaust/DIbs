@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 
-import { ADD_COMMENT_TO_ITEM } from '../../utils/mutations';
+import { ADD_COMMENT_TO_ITEM } from '../utils/mutations';
 
 const CommentForm = ({ itemId }) => {
   const [commentText, setCommentText] = useState('');
@@ -14,7 +14,7 @@ const CommentForm = ({ itemId }) => {
 
     try {
       const { data } = await addCommentToItem({
-        variables: { commenterId, itemId, content },
+        variables: { commentId, itemId, content },
       });
 
       setCommentText('');

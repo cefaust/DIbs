@@ -12,13 +12,13 @@ import { ADD_DIB_TO_ITEM, REMOVE_DIB_FROM_ITEM } from '../utils/mutations'
 
 const SingleItem = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
-  const { _id } = useParams();
+  const { itemId } = useParams();
 
   const [ addDib, { error }] = useMutation(ADD_DIB_TO_ITEM)
 
   const { loading, data } = useQuery(QUERY_ITEM, {
     // pass URL parameter
-    variables: { id: _id },
+    variables: { id : itemId },
   });
 
   const item = data?.item || {};

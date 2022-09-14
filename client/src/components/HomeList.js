@@ -1,16 +1,18 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
-// import { useMutation } from '@apollo/client';
+import { Link } from 'react-router-dom'
+import { useMutation } from '@apollo/client';
 
 
-const HomeList = ({ dibs, title }) => {
+const HomeList = ({ dibs }) => {
+
+    
     if (!dibs.length) {
         return <h3>No Dibs Yet</h3>;
     }
 
     return (
         <div>
-            <h3>{title}</h3>
+            <h3>{dibs.name}</h3>
             {dibs && 
             dibs.map((dib) => (
             <div key={dib.id} className="card mb-3">
@@ -20,7 +22,7 @@ const HomeList = ({ dibs, title }) => {
                     <p className="card-text">{dib.description}</p>
                     <Link
                     className="btn btn-primary"
-                    to={`/dibs/${dib.id}`}> View Item
+                    to={`/items/${dib._id}`}> View Item
                     </Link>
                     <a href="" className="btn btn-primary"> 
                     Add to Dibs 
