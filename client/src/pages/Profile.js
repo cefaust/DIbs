@@ -6,7 +6,9 @@ import Auth from '../utils/auth';
 
 export default function Profile() {
 const [ProfilePage, setProfilePage] = useState('Home');
+const token = Auth.loggedIn() ? Auth.getProfile() : null;
 
+console.log(token)
 
 
 
