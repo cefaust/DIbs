@@ -4,60 +4,43 @@ import Auth from '../utils/auth'
 
 import { ADD_COMMENT_TO_ITEM } from '../utils/mutations';
 
-const CommentForm = ({ itemId  }) => {
-  const [commentContent, setCommentContent] = useState('');
-  const [characterCount, setCharacterCount] = useState(0);
-
-  const [addCommentToItem, { error }] = useMutation(ADD_COMMENT_TO_ITEM);
+const CommentForm = (props) => {
+  const [formState, setFormState] = useState({ content: ''});
+  const [addCommentToItem] = useMutation(ADD_COMMENT_TO_ITEM);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    try {
-      const { data } = await addCommentToItem({
+    const mutationResponse = await addCommentToItem({
         variables: { 
-          itemId, 
-          commentContent, 
+          itemId: props.itemId, 
+          content: formState.content, 
           commenterId: Auth.getProfile().data._id
 
-
       }});
-
-      setCommentContent('');
-    } catch (err) {
-      console.error(err);
-    }
-  };
+      const token = mutationResponse.data.addCommentToItem.token;
+        Auth.login(token);
+    };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
-    if (name === 'commentText' && value.length <= 280) {
-      setCommentContent(value);
-      setCharacterCount(value.length);
-    }
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
   };
+  
 
   return (
     <div>
       <h4>Comment to claim dibs:</h4>
-      <p
-        className={`m-0 ${
-          characterCount === 280 || error ? 'text-danger' : ''
-        }`}
-      >
-        Character Count: {characterCount}/280
-        {error && <span className="ml-2">Something went wrong...</span>}
-      </p>
       <form
         className="flex-row justify-center justify-space-between-md align-center"
         onSubmit={handleFormSubmit}
       >
         <div className="col-12 col-lg-9">
           <textarea
-            name="commentText"
+            name="content"
             placeholder="Add your comment..."
-            value={commentContent}
             className="form-input w-100"
             style={{ lineHeight: '1.5' }}
             onChange={handleChange}
