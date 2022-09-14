@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 
-import { CREATE_ITEM } from '../../utils/mutations';
+import { CREATE_ITEM } from '../utils/mutations';
 
 const AdditemForm = () => {
   const [formState, setFormState] = useState({
@@ -9,20 +9,10 @@ const AdditemForm = () => {
     itemDesc: '',
   });
 
-  const [addItem, { error }] = useMutation(CREATE_ITEM);
+  // const [addItem, { error }] = useMutation(CREATE_ITEM);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    try {
-      const { data } = addItem({
-        variables: { ...formState },
-      });
-
-      window.location.reload();
-    } catch (err) {
-      console.error(err);
-    }
   };
 
   const handleChange = (e) => {
@@ -32,43 +22,43 @@ const AdditemForm = () => {
   };
 
   return (
-    <div>
-      <h3>Add an item to be dibbed</h3>
+    <div className='card py-5 px-md-5 w-50'>
+      <div className="row d-flex justify-content-center">
+        <div className="col-lg-8">
+        <h3 className='my-2'>Add an item to be dibbed</h3>
 
-      <form
-        className="flex-row justify-center justify-space-between-md align-center"
-        onSubmit={handleFormSubmit}
-      >
-        <div className="col-12">
-          <textarea
-            name="itemName"
-            placeholder="Name your item"
-            value={formState.itemName}
-            className="form-input w-100"
-            onChange={handleChange}
-          ></textarea>
-        </div>
-        <div className="col-12 col-lg-9">
-          <input
-            name="itemDesc"
-            placeholder="Describe your item"
-            value={formState.itemDesc}
-            className="form-input w-100"
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="col-12 col-lg-3">
-          <button className="btn btn-primary btn-block py-3" type="submit">
-            Add Item
-          </button>
-        </div>
-        {error && (
-          <div className="col-12 my-3 bg-danger text-white p-3">
-            Something went wrong...
+        <form
+          className="d-flex flex-column"
+          onSubmit={handleFormSubmit}
+        >
+          <div className="form-group">
+            <p className='text-left'>Item Name</p>
+            <input
+              name="itemName"
+              placeholder="Name your item"
+              value={formState.itemName}
+              className="form-control m-2"
+              onChange={handleChange}
+            />
           </div>
-        )}
+          <div className="form-group">
+          <label>Item Description</label>
+            <textarea name="itemDesc"
+              placeholder="Describe your item"
+              value={formState.itemDesc}
+              className="form-control m-2"
+              onChange={handleChange}
+            ></textarea>
+          </div>
+
+          <div className="">
+            <button className="btn btn-primary btn-block my-2" type="submit">
+              Add Item
+            </button>
+        </div>
       </form>
+        </div>
+      </div>
     </div>
   );
 };
