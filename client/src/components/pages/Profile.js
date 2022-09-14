@@ -1,4 +1,5 @@
 import { useState } from 'react'
+// import AdditemForm from '../AdditemForm';
 
 export default function Profile() {
 const [ProfilePage, setProfilePage] = useState('Home')
@@ -13,5 +14,6 @@ const [ProfilePage, setProfilePage] = useState('Home')
       : <button onClick={() => setProfilePage('Home')}>My Posts</button>}
       </div>
     </div>
+    
   );
 }
