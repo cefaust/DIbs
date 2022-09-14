@@ -51,7 +51,7 @@ const SingleItem = () => {
         <CommentList comments={item.comments} />
       </div>
       <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <CommentForm itemId ={item._id} />
+        <CommentForm itemId={item._id}/>
       </div>
 
       </div>

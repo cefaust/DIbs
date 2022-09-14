@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
+import Auth from '../utils/auth'
 
 import { ADD_COMMENT_TO_ITEM } from '../utils/mutations';
 
-const CommentForm = ({ itemId }) => {
-  const [commentText, setCommentText] = useState('');
+const CommentForm = ({ itemId  }) => {
+  const [commentContent, setCommentContent] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
   const [addCommentToItem, { error }] = useMutation(ADD_COMMENT_TO_ITEM);
@@ -14,10 +15,15 @@ const CommentForm = ({ itemId }) => {
 
     try {
       const { data } = await addCommentToItem({
-        variables: { commentId, itemId, content },
-      });
+        variables: { 
+          itemId, 
+          commentContent, 
+          commenterId: Auth.getProfile().data._id
 
-      setCommentText('');
+
+      }});
+
+      setCommentContent('');
     } catch (err) {
       console.error(err);
     }
@@ -27,7 +33,7 @@ const CommentForm = ({ itemId }) => {
     const { name, value } = event.target;
 
     if (name === 'commentText' && value.length <= 280) {
-      setCommentText(value);
+      setCommentContent(value);
       setCharacterCount(value.length);
     }
   };
@@ -51,7 +57,7 @@ const CommentForm = ({ itemId }) => {
           <textarea
             name="commentText"
             placeholder="Add your comment..."
-            value={commentText}
+            value={commentContent}
             className="form-input w-100"
             style={{ lineHeight: '1.5' }}
             onChange={handleChange}
