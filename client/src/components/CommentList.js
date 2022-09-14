@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { ADD_COMMENT_TO_ITEM, REMOVE_COMMENT_FROM_ITEM } from '../utils/mutations';
+
 const CommentList = ({ comments = [] }) => {
   console.log(comments);
   if (!comments.length) {
@@ -22,10 +24,10 @@ const CommentList = ({ comments = [] }) => {
                 <h5 className="card-header">
                   An anonymous user commented{' '}
                   <span style={{ fontSize: '0.825rem' }}>
-                    on {comment.createdAt}
+                    on {comment.date_created}
                   </span>
                 </h5>
-                <p className="card-body">{comment.commentText}</p>
+                <p className="card-body">{comment.content}</p>
               </div>
             </div>
           ))}

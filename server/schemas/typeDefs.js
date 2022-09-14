@@ -2,6 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type Comment {
+    comment_by: ID!
     content: String!
     date_created: String!
   }

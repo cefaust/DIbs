@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
+import Auth from '../utils/auth'
 
-import { ADD_COMMENT } from '../../utils/mutations';
+import { ADD_COMMENT_TO_ITEM } from '../utils/mutations';
 
-const CommentForm = ({ thoughtId }) => {
-  const [commentText, setCommentText] = useState('');
+const CommentForm = ({ itemId  }) => {
+  const [commentContent, setCommentContent] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addComment, { error }] = useMutation(ADD_COMMENT);
+  const [addCommentToItem, { error }] = useMutation(ADD_COMMENT_TO_ITEM);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { data } = await addComment({
-        variables: { thoughtId, commentText },
-      });
+      const { data } = await addCommentToItem({
+        variables: { 
+          itemId, 
+          commentContent, 
+          commenterId: Auth.getProfile().data._id
 
-      setCommentText('');
+
+      }});
+
+      setCommentContent('');
     } catch (err) {
       console.error(err);
     }
@@ -27,14 +33,14 @@ const CommentForm = ({ thoughtId }) => {
     const { name, value } = event.target;
 
     if (name === 'commentText' && value.length <= 280) {
-      setCommentText(value);
+      setCommentContent(value);
       setCharacterCount(value.length);
     }
   };
 
   return (
     <div>
-      <h4>What are your thoughts on this thought?</h4>
+      <h4>Comment to claim dibs:</h4>
       <p
         className={`m-0 ${
           characterCount === 280 || error ? 'text-danger' : ''
@@ -51,7 +57,7 @@ const CommentForm = ({ thoughtId }) => {
           <textarea
             name="commentText"
             placeholder="Add your comment..."
-            value={commentText}
+            value={commentContent}
             className="form-input w-100"
             style={{ lineHeight: '1.5' }}
             onChange={handleChange}
