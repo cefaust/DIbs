@@ -16,15 +16,19 @@ export default function AddItem() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    const mutationResponse = await createItem({
-      variables: {
-        name: formState.itemName,
-        description: formState.itemDesc
-      }
-    })
-    const token = mutationResponse.data.createItem.token;
-        Auth.login(token);
+    try {
+      const mutationResponse = await createItem({
+        variables: {
+          name: formState.itemName,
+          description: formState.itemDesc,
+          userId: Auth.getProfile().data._id
+        }
+      })
+      const token = mutationResponse.data.createItem.token;
+          Auth.login(token);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleChange = (e) => {
@@ -48,18 +52,21 @@ export default function AddItem() {
           <input
             name="itemName"
             placeholder="Name your item"
-            value={formState.itemName}
-            className="form-control"
+            type='itemName'
+            id='itemName'
             onChange={handleChange}
+            className="form-control"
           />
         </div>
         <div className="form-outline mb-2">
         <label className='form-label'>Description</label>
-          <textarea name="itemDesc"
+          <textarea
             placeholder="Describe your item"
-            value={formState.itemDesc}
-            className="form-control"
+            type='itemDesc'
+            name="itemDesc"
+            id='itemDesc'
             onChange={handleChange}
+            className="form-control"
           ></textarea>
         </div>
 
