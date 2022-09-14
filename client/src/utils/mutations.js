@@ -1,9 +1,9 @@
 import { gql } from '@apollo/client';
 
 export const CREATE_ITEM = gql`
-  mutation createItem($userId: ID!, $name: String!, $description: String!, $location: String!, 
+  mutation createItem($userId: ID!, $name: String!, $description: String!, $location: String, 
         $image: String) {
-    createItem(name: $name, description: $description, location: $location, image: $image) {
+    createItem(userId: $userId name: $name, description: $description, location: $location, image: $image) {
       _id
       name
       description

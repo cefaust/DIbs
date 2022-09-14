@@ -15,7 +15,6 @@ const itemSchema = new Schema({
   },
   location: {
     type: String,
-    required: true,
     null: false,
   },
   image: {

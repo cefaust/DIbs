@@ -16,7 +16,7 @@ const typeDefs = gql`
     _id: ID!
     name: String!
     description: String!
-    location: String!
+    location: String
     image: String
     date_created: String!
     dibbed: [Dib]
@@ -45,7 +45,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    createItem(userId: ID!, name: String!, description: String!, location: String!, 
+    createItem(userId: ID!, name: String!, description: String!, location: String, 
       image: String): Item
     addItemToUser(userId: ID!, itemId: ID!): User
     removeItemFromUser(userId: ID!, itemId: ID!): User
