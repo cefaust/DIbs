@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 
-import { ADD_COMMENT } from '../../utils/mutations';
+import { ADD_COMMENT_TO_ITEM } from '../../utils/mutations';
 
-const CommentForm = ({ thoughtId }) => {
+const CommentForm = ({ itemId }) => {
   const [commentText, setCommentText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addComment, { error }] = useMutation(ADD_COMMENT);
+  const [addCommentToItem, { error }] = useMutation(ADD_COMMENT_TO_ITEM);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { data } = await addComment({
-        variables: { thoughtId, commentText },
+      const { data } = await addCommentToItem({
+        variables: { commenterId, itemId, content },
       });
 
       setCommentText('');
@@ -34,7 +34,7 @@ const CommentForm = ({ thoughtId }) => {
 
   return (
     <div>
-      <h4>What are your thoughts on this thought?</h4>
+      <h4>Comment to claim dibs:</h4>
       <p
         className={`m-0 ${
           characterCount === 280 || error ? 'text-danger' : ''
