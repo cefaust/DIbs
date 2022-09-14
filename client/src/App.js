@@ -11,6 +11,7 @@ import Profile from './pages/Profile';
 import NoMatch from './pages/NoMatch';
 import NavTabs from './components/NavTabs';
 import SingleItem from './pages/SingleItem';
+import AddItem from './pages/AddItem';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -59,6 +60,10 @@ function App() {
               <Route 
                 path="items/:itemId"
                 element={<SingleItem />}
+              />
+                <Route
+                path='/add-item'
+                element={<AddItem />}
               />
               <Route
                 path="*"
