@@ -11,6 +11,7 @@ import Profile from './pages/Profile';
 import NoMatch from './pages/NoMatch';
 import NavTabs from './components/NavTabs';
 import SingleItem from './pages/SingleItem';
+import AddItem from './pages/AddItem';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
