@@ -57,6 +57,7 @@ const typeDefs = gql`
     addDibToUser(userId: ID!, itemId: ID!): User
     removeDibFromUser(userId: ID!, itemId: ID!): User
     createUser( name: String!, password: String!, email: String!): Auth
+    login(email: String!, password: String!): Auth
   }
 `;
 

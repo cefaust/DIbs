@@ -1,7 +1,12 @@
-import { useState } from 'react'
+import { useQuery } from '@apollo/client';
+import { useState } from 'react';
+import { QUERY_USER } from '../utils/queries';
 
 export default function Profile() {
-const [ProfilePage, setProfilePage] = useState('Home')
+const [ProfilePage, setProfilePage] = useState('Home');
+const { loading, data } = useQuery(QUERY_USER);
+const userData = data?.me || {};
+
 
 
 

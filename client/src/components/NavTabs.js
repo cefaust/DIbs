@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import Auth from "../utils/auth";
 
-function NavTabs() {
+function NavTabs({currentPage}) {
 
   function showNavigation() {
     if (Auth.loggedIn()) {
@@ -36,22 +36,25 @@ function NavTabs() {
       return (
         <ul className='nav nav-pills'>
           <li className='nav-item'>
-            <Link to='/Home'>
+            <Link className='nav-link' to='/Home'>
               Home
             </Link>
           </li>
           <li className='nav-item'>
-            <Link to='/Login'>
+            <Link className='nav-link' to='/Login'>
               Login
             </Link>
           </li>
           <li className='nav-item'>
-            <Link to='/SignUp'>
+            <Link className={currentPage === '/SignUp' ? 'nav-link active' : 'nav-link'} to='/SignUp'>
               Sign Up
             </Link>
           </li>
           <li className='nav-item'>
-            <Link to='/Profile'>
+            <Link
+              to='/Profile'
+              className={currentPage === '/Profile' ? 'nav-link active' : 'nav-link'}
+            >
               Profile
             </Link>
           </li>
@@ -62,7 +65,7 @@ function NavTabs() {
   }
 
   return (
-    <div>
+    <div className='container'>
       <header className='d-flex flex-wrap justify-content-sm-between py-3 mb-4 border-bottom'>
         <div className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
           <h1 className='fs-1'>Dibs</h1>
