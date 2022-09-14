@@ -17,6 +17,13 @@ const resolvers = {
       const params = _id ? { _id } : {};
       return User.findOne(params);
     },
+    me: async (_, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id }).select('-__v -password');
+        return userData;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    }
   },
   Mutation: {
     createItem: async (parent, args) => {
@@ -90,9 +97,10 @@ const resolvers = {
       )
       return item;
     },
-    addDibToUser: async (parent, args) => {
+    addDibToUser: async (parent, args, context) => {
+      console.log(context.user)
       const user = await User.findOneAndUpdate(
-        { _id: args.userId },
+        { _id: context.user._id },
         { $addToSet: { dibsCalled: args.itemId } },
         { new: true }
       )
