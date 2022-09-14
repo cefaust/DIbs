@@ -10,7 +10,7 @@ import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import NoMatch from './pages/NoMatch';
 import NavTabs from './components/NavTabs';
-import SingleItem from './pages/SingleItem';
+import AddItem from './pages/AddItem';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -56,15 +56,14 @@ function App() {
                 path='/Profile'
                 element={<Profile />}
               />
-              <Route 
-                path="items/:itemId"
-                element={<SingleItem />}
+               <Route
+                path='/add-item'
+                element={<AddItem />}
               />
               <Route
                 path="*"
                 element={<NoMatch />}
               />
-              
             </Routes>
         </div>
       </Router>
