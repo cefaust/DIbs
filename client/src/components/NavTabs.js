@@ -1,32 +1,52 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import Auth from "../utils/auth";
 
-function NavTabs({currentPage}) {
+
+function NavTabs() {
+  const currentPage = useLocation().pathname
+
 
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
         <ul className='nav nav-pills'>
           <li className='nav-item'>
-            <Link to='/'>
+            <Link
+              to='/'
+              className={currentPage === '/' ? 'nav-link active' : 'nav-link'}>
               Home
             </Link>
           </li>
           <li className="nav-item">
-            {/* this is not using the Link component to logout or user and then refresh the application to the start */}
-            <a href="/" onClick={() => Auth.logout()}>
-              Logout
-            </a>
+           <Link
+             to='/'
+             className={'nav-link'}
+             onClick={() => Auth.logout()}
+            >
+             Logout
+           </Link>
           </li>
           <li className='nav-item'>
-            <Link to='/SignUp'>
+            <Link
+              to='/SignUp'
+              className={currentPage === '/SignUp' ? 'nav-link active' : 'nav-link'}
+              >
               Sign Up
             </Link>
           </li>
           <li className='nav-item'>
-            <Link to='/Profile'>
+            <Link
+              className={currentPage === '/Profile' ? 'nav-link active' : 'nav-link'}
+              to='/Profile'>
               Profile
+            </Link>
+          </li>
+          <li className='nav-item'>
+            <Link
+              className={currentPage === '/Add-item' ? 'nav-link active' : 'nav-link'}
+              to='/Add-item'>
+              Add Item
             </Link>
           </li>
         </ul>
@@ -36,17 +56,22 @@ function NavTabs({currentPage}) {
       return (
         <ul className='nav nav-pills'>
           <li className='nav-item'>
-            <Link className='nav-link' to='/'>
+            <Link
+              to='/'
+              className={currentPage === '/Home' ? 'nav-link active' : 'nav-link'}
+            >
               Home
             </Link>
           </li>
           <li className='nav-item'>
-            <Link className='nav-link' to='/Login'>
+            <Link
+              className={currentPage === '/Login' ? 'nav-link active' : 'nav-link'} to='/Login'>
               Login
             </Link>
           </li>
           <li className='nav-item'>
-            <Link className={currentPage === '/SignUp' ? 'nav-link active' : 'nav-link'} to='/SignUp'>
+            <Link
+              className={currentPage === '/SignUp' ? 'nav-link active' : 'nav-link'} to='/SignUp'>
               Sign Up
             </Link>
           </li>
@@ -77,3 +102,6 @@ function NavTabs({currentPage}) {
 
 }
 export default NavTabs;
+
+
+
