@@ -7,6 +7,7 @@ import { QUERY_ITEMS } from '../utils/queries';
 const Home = () => {
     const { loading, data } = useQuery(QUERY_ITEMS);
     const items = data?.items || [];
+    console.log(items);
 
     return(
         <main>
@@ -16,7 +17,7 @@ const Home = () => {
               <div>Loading...</div>
             ) : (
               <HomeList
-                dibs={items}
+                items={items}
               />
             )}
           </div>
@@ -30,33 +31,3 @@ const Home = () => {
 
 export default Home;
 
-// export default function Home(){
-//     return (
-//         <div>
-//         <div>
-//           <div className="card mb-3">
-//             <img src="" className="card-img-top" alt="..."/>
-//          <div className="card-body">
-//          <h5 className="card-title">Title</h5>
-//          <p className="card-text">this is where the description goes</p>
-//          <a href="#" className="btn btn-primary">Go somewhere</a>
-//          <a href="#" className="btn btn-primary">Go somewhere</a>
-//          <p className="card-text"><small className="text-muted">Posted at </small></p>
-//           </div>
-//           </div>
-//          </div>
-//         <div>
-//           <div className="card mb-3">
-//             <img src="" className="card-img-top" alt="..."/>
-//          <div className="card-body">
-//          <h5 className="card-title">Title</h5>
-//          <p className="card-text">this is where the description goes</p>
-//          <a href="#" className="btn btn-primary">Go somewhere</a>
-//          <a href="#" className="btn btn-primary">Go somewhere</a>
-//          <p className="card-text"><small className="text-muted">Posted at </small></p>
-//           </div>
-//           </div>
-//          </div>
-//          </div>
-//       );
-// }

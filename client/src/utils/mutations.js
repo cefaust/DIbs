@@ -149,26 +149,6 @@ export const ADD_COMMENT_TO_ITEM = gql`
   }
 `;
 
-export const REMOVE_COMMENT_FROM_ITEM = gql`
-  mutation removeCommentFromItem($commentId: ID!, $itemId: ID!) {
-    removeCommentFromItem(commentId: $commentId, itemId: $itemId) {
-      name
-      description
-      location
-      image
-      dibbed {
-        date_dibbed
-        dibbed_by
-      }
-      comments {
-        comment_by
-        content
-        date_created
-      }
-    }
-  }
-`;
-
 export const ADD_DIB_TO_USER = gql`
   mutation addDibToUser($itemId: ID!) {
     addDibToUser(itemId: $itemId) {

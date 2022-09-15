@@ -3,19 +3,11 @@ import React from 'react';
 import Auth from '../utils/auth'
 
 import { QUERY_ITEM } from '../utils/queries';
-import { REMOVE_COMMENT_FROM_ITEM } from '../utils/mutations';
 
 
-const CommentList = ({ itemId, commentId, comments = []}) => {
-  const [removeComment] = useMutation(REMOVE_COMMENT_FROM_ITEM, {
-    variables: { 
-      commentId: commentId, 
-      itemId: itemId},
-    refetchQueries: [{query: QUERY_ITEM, 
-      variables: { _id: itemId
-      }    }]
-  })
 
+const CommentList = ({ comments = []}) => {
+// One thing I can't figure out is how to list who wrote the comment. I tried a couple of ways and came across issues
   console.log(comments);
   if (!comments.length) {
     return <h3>No Comments Yet</h3>;
@@ -41,9 +33,6 @@ const CommentList = ({ itemId, commentId, comments = []}) => {
                   </span>
                 </h5>
                 <p className="card-body">{comment.content}</p>
-                <button className='btn btn-danger m-s' onClick={removeComment}>
-                  Delete
-                </button>
               </div>
             </div>
           ))}

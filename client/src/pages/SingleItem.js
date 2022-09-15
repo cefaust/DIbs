@@ -3,18 +3,42 @@ import React from 'react';
 // Import the `useParams()` hook
 import { useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
+import Auth from '../utils/auth'
 
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 
 import { QUERY_ITEM } from '../utils/queries';
-import { ADD_DIB_TO_ITEM, REMOVE_DIB_FROM_ITEM } from '../utils/mutations'
+import { ADD_DIB_TO_USER, ADD_DIB_TO_ITEM, REMOVE_DIB_FROM_ITEM } from '../utils/mutations'
 
 const SingleItem = () => {
-  // Use `useParams()` to retrieve value of the route parameter `:profileId`
+  // Use `useParams()` to retrieve value of the route parameter `:itemId`
   const { itemId } = useParams();
 
-  const [ addDib, { error }] = useMutation(ADD_DIB_TO_ITEM)
+  const [ addDibToUser] = useMutation(ADD_DIB_TO_USER)
+  const [ addDibToItem] = useMutation(ADD_DIB_TO_ITEM)
+
+  async function handleAddDibs(e) {
+    try {
+       const userData = await addDibToUser({ 
+        variables : {
+            itemId: e.target.id
+        }
+       })
+       const itemData  = await addDibToItem({
+          variables: {itemId: e.target.id,
+          dibbedBy: Auth.getProfile().data._id
+       }})
+       console.log(userData.data, itemData.data)
+
+    } catch (error) {
+        console.log(error)
+    }
+
+    console.log(e.target.id)
+}
+
+
 
   const { loading, data } = useQuery(QUERY_ITEM, {
     // pass URL parameter
@@ -23,32 +47,27 @@ const SingleItem = () => {
 
   const item = data?.item || {};
 
+
   if (loading) {
     return <div>Loading...</div>;
   }
-  return (<div>
-        <div>
-         <div className="card mb-3">
-            <img src={item.image} className="card-img-top" alt="..."/>
+  return (<div className='container text-center'>
+        <div className='row justify-content-center'>
+         <div className="card m-3 p-2 col-10">
                 <div className="card-body">
                     <h5 className="card-title">{item.name}</h5>
                         <p className="card-text">{item.description}</p>
-                            <div className="small d-flex justify-content-start">
-                                <a href="#!" className="d-flex align-items-center me-3" onClick={addDib}>
-                                <i className="far fa-thumbs-up me-2"></i>
-                                <p className="mb-0">Dibs</p>
-                                </a>
-                                <a href="#!" className="d-flex align-items-center me-3">
-                                 <i className="far fa-comment-dots me-2"></i>
-                                 <p className="mb-0">Comment</p>
-                                </a>
+                            <div className="small d-flex justify-content-center">
+                                <button id={item._id} className="btn btn-primary" onClick={(e) => {handleAddDibs(e)}}>
+                                  Add to Dibs 
+                                </button> 
                             </div>
                         </div>
                     </div>
                 </div>
 
       <div className="my-5">
-        <CommentList itemId={itemId} commenterId={item.comments.commentId} comments={item.comments} />
+        <CommentList comments={item.comments} />
       </div>
       <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
         <CommentForm itemId={itemId}/>
