@@ -179,6 +179,14 @@ export const ADD_DIB_TO_USER = gql`
       dibsCalled
       items {
         _id
+        name
+        description
+        location
+        image
+        date_created
+        dibbed {
+          date_dibbed
+        }
       }
     }
   } 
