@@ -22,7 +22,7 @@ export const QUERY_ITEMS = gql`
 `;
 
 export const QUERY_ITEM = gql`
-  query item($_id: String) {
+  query item($_id: ID!) {
     item(_id: $_id) {
       _id
       name
@@ -35,6 +35,8 @@ export const QUERY_ITEM = gql`
         dibbed_by
       }
       comments {
+        _id
+        comment_by
         content
         date_created
       }
@@ -54,13 +56,16 @@ export const QUERY_USERS = gql`
       location
       image
       date_created
-      date_dibbed
+      dibbed {
+        date_dibbed
+      }
     }
   }
   `;
 
 export const QUERY_USER= gql`
-  query user {
+  query user($_id: ID) {
+     user(_id: $_id){
     _id
     email
     name
@@ -71,7 +76,10 @@ export const QUERY_USER= gql`
       location
       image
       date_created
-      date_dibbed
+      dibbed{
+        date_dibbed
+      }
     }
   }
+}
   `;

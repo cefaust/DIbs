@@ -150,9 +150,8 @@ export const ADD_COMMENT_TO_ITEM = gql`
 `;
 
 export const REMOVE_COMMENT_FROM_ITEM = gql`
-  mutation removeCommentFromItem($commenterId: ID!, $itemId: ID!) {
-    removeCommentFromItem(commenterId: $commenterId, itemId: $itemId) {
-      _id
+  mutation removeCommentFromItem($commentId: ID!, $itemId: ID!) {
+    removeCommentFromItem(commentId: $commentId, itemId: $itemId) {
       name
       description
       location
@@ -178,7 +177,9 @@ export const ADD_DIB_TO_USER = gql`
       password
       name
       dibsCalled
-      items
+      items {
+        _id
+      }
     }
   } 
 `;
@@ -191,7 +192,9 @@ export const REMOVE_DIB_FROM_USER = gql`
       password
       name
       dibsCalled
-      items
+      items {
+        _id
+      }
     }
   } 
 `;
@@ -205,7 +208,9 @@ export const CREATE_USER = gql`
         password
         name
         dibsCalled
-        items
+        items {
+          _id
+        }
       }
     }
   }
@@ -221,7 +226,9 @@ mutation login($email: String! $password: String!) {
       password
       name
       dibsCalled
-      items
+      items {
+        _id
+      }
     }
   }
 }
