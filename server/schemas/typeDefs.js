@@ -29,7 +29,7 @@ const typeDefs = gql`
     password: String!
     name: String!
     dibsCalled: [String]
-    items: [ID]
+    items: [Item]
   }
 
   type Query {

@@ -60,18 +60,23 @@ export const QUERY_USERS = gql`
   `;
 
 export const QUERY_USER= gql`
-  query user {
-    _id
-    email
-    name
-    items {
+  query user($_id: String) {
+    user(_id: $_id) {
       _id
-      name
-      description
-      location
-      image
-      date_created
-      date_dibbed
+      email
+      name 
+      dibsCalled
+      items {
+        _id
+        name
+        description
+        location
+        image
+        date_created
+        dibbed {
+          date_dibbed
+        }
     }
   }
+}
   `;

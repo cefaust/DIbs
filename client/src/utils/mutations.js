@@ -178,7 +178,17 @@ export const ADD_DIB_TO_USER = gql`
       password
       name
       dibsCalled
-      items
+      items {
+        _id
+        name
+        description
+        location
+        image
+        date_created
+        dibbed {
+          date_dibbed
+        }
+      }
     }
   } 
 `;

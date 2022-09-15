@@ -8,9 +8,21 @@ export default function Profile() {
 const [ProfilePage, setProfilePage] = useState('Home');
 const token = Auth.loggedIn() ? Auth.getProfile() : null;
 
-// const [getUser, { error }] = useQuery(QUERY_USER);
+const { loading, data } = useQuery(QUERY_USER, {
+  variables: { _id: token.data._id}
+});
+    const items = data?.user || [];
 
-console.log(token.data._id)
+    console.log(items)
+    console.log(token)
+
+
+
+
+
+
+
+// console.log(token.data._id)
 
 
 
