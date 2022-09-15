@@ -66,7 +66,7 @@ const SingleItem = () => {
                     </div>
                 </div>
 
-      <div className="my-5">
+      <div className="my-1">
         <CommentList comments={item.comments} />
       </div>
       <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
