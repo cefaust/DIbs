@@ -48,10 +48,10 @@ const SingleItem = () => {
                 </div>
 
       <div className="my-5">
-        <CommentList comments={item.comments} />
+        <CommentList itemId={itemId} commenterId={item.comments.commentId} comments={item.comments} />
       </div>
       <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <CommentForm itemId={item._id}/>
+        <CommentForm itemId={itemId}/>
       </div>
 
       </div>
