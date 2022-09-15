@@ -170,9 +170,8 @@ export const ADD_COMMENT_TO_ITEM = gql`
 `;
 
 export const REMOVE_COMMENT_FROM_ITEM = gql`
-  mutation removeCommentFromItem($commenterId: ID!, $itemId: ID!) {
-    removeCommentFromItem(commenterId: $commenterId, itemId: $itemId) {
-      _id
+  mutation removeCommentFromItem($commentId: ID!, $itemId: ID!) {
+    removeCommentFromItem(commentId: $commentId, itemId: $itemId) {
       name
       description
       location
