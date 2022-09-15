@@ -11,3 +11,35 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root {
+  --main: #fffffe;
+  --dark: #094067;
+  --secondary: #90b4ce;
+  --primary: #3da9fc;
+  --tertiary: #ef4565;
+}
+
+main {
+  background-color: var(--main);
+}
+
+h1, h2, h3, h4, h5 {
+  color: var(--dark)
+}
+
+div.card {
+  background-color: var(--secondary);
+  color: var(--dark)
+}
+
+div.card-body {
+  background-color: var(--secondary);
+  color: var(--dark)
+}
+
+.btn.btn-primary {
+  background-color: var(--primary);
+  color:var(--dark)
+}
+
