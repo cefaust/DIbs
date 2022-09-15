@@ -170,8 +170,8 @@ export const REMOVE_COMMENT_FROM_ITEM = gql`
 `;
 
 export const ADD_DIB_TO_USER = gql`
-  mutation addDibToUser($userId: ID!, $itemId: ID!) {
-    addDibToUser(userId: $userId, itemId: $itemId) {
+  mutation addDibToUser($itemId: ID!) {
+    addDibToUser(itemId: $itemId) {
       _id
       email
       password

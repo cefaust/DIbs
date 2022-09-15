@@ -38,6 +38,7 @@ const typeDefs = gql`
     item(_id: ID): Item
     users: [User]
     user(_id: ID): User
+    me: User
   }
   
   type Auth {
@@ -47,7 +48,7 @@ const typeDefs = gql`
 
   type Mutation {
     createItem(userId: ID!, name: String!, description: String!, location: String, 
-      image: String): Item
+    image: String): Item
     addItemToUser(userId: ID!, itemId: ID!): User
     removeItemFromUser(userId: ID!, itemId: ID!): User
     deleteItem(itemId: ID!): Item
@@ -56,7 +57,7 @@ const typeDefs = gql`
     removeCommentFromItem(commentId: ID!, itemId: ID!): Item
     addCommentToItem(commenterId: ID!, itemId: ID!, content: String!): Item
     removeDibFromItem(itemId: ID!, dibbedBy: ID!): Item
-    addDibToUser(userId: ID!, itemId: ID!): User
+    addDibToUser(itemId: ID!): User
     removeDibFromUser(userId: ID!, itemId: ID!): User
     createUser( name: String!, password: String!, email: String!): Auth
     login(email: String!, password: String!): Auth
