@@ -4,10 +4,6 @@ export const QUERY_ITEMS = gql`
   query items {
     items {
       _id
-      user {
-        _id
-        name
-      }
       name
       description
       location
