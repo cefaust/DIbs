@@ -1,6 +1,6 @@
-// import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { useState } from 'react';
-// import { QUERY_USER } from '../utils/queries';
+import { QUERY_USER } from '../utils/queries';
 // import DibsList from '../components/DibsList'
 import Auth from '../utils/auth';
 
@@ -8,7 +8,9 @@ export default function Profile() {
 const [ProfilePage, setProfilePage] = useState('Home');
 const token = Auth.loggedIn() ? Auth.getProfile() : null;
 
-console.log(token)
+// const [getUser, { error }] = useQuery(QUERY_USER);
+
+console.log(token.data._id)
 
 
 
