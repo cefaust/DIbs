@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@apollo/client';
 import { useState } from 'react';
 import { QUERY_USER } from '../utils/queries';
-// import DibsList from '../components/DibsList'
+import DibsList from '../components/DibsList'
 import Auth from '../utils/auth';
 
 export default function Profile() {
@@ -13,30 +13,24 @@ const { loading, data } = useQuery(QUERY_USER, {
 });
     const items = data?.user || [];
 
-    console.log(items)
-    console.log(token)
-
-
-
-
-
-
-
-// console.log(token.data._id)
-
 
 
 
   return (
     <div>
-      <div >
-      <h1>Profile</h1>
+      <div className="m-5">
+      <h1>Welcome {token.data.name}</h1>
       {ProfilePage === 'Home' ? <div><button onClick={() => setProfilePage('Dibs')}>Dibs</button> 
-
-      {/* <DibsList /> */}
       </div>
       : <button onClick={() => setProfilePage('Home')}>My Posts</button>}
       </div>
+
+
+      <div>
+        {ProfilePage === "Home" ? (<h1>home</h1>) : (<DibsList data={items} />)}
+      </div>
     </div>
+
+    
   );
 }

@@ -30,7 +30,17 @@ export const ADD_ITEM_TO_USER = gql`
       password
       name
       dibsCalled
-      items
+      items {
+        _id
+        name
+        description
+        location
+        image
+        date_created
+        dibbed {
+          date_dibbed
+        }
+      }
     }
   }
 `
@@ -43,7 +53,17 @@ export const REMOVE_ITEM_FROM_USER = gql`
       password
       name
       dibsCalled
-      items
+      items {
+        _id
+        name
+        description
+        location
+        image
+        date_created
+        dibbed {
+          date_dibbed
+        }
+      }
     }
   }
 `
@@ -201,7 +221,17 @@ export const REMOVE_DIB_FROM_USER = gql`
       password
       name
       dibsCalled
-      items
+      items {
+        _id
+        name
+        description
+        location
+        image
+        date_created
+        dibbed {
+          date_dibbed
+        }
+      }
     }
   } 
 `;
@@ -215,7 +245,17 @@ export const CREATE_USER = gql`
         password
         name
         dibsCalled
-        items
+        items {
+          _id
+          name
+          description
+          location
+          image
+          date_created
+          dibbed {
+            date_dibbed
+          }
+        }
       }
     }
   }
@@ -231,7 +271,17 @@ mutation login($email: String! $password: String!) {
       password
       name
       dibsCalled
-      items
+      items {
+        _id
+        name
+        description
+        location
+        image
+        date_created
+        dibbed {
+          date_dibbed
+        }
+      }
     }
   }
 }
