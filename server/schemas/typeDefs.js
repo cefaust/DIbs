@@ -2,6 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type Comment {
+    _id: ID!
     comment_by: ID!
     content: String!
     date_created: String!
@@ -29,14 +30,14 @@ const typeDefs = gql`
     password: String!
     name: String!
     dibsCalled: [String]
-    items: [ID]
+    items: [Item]
   }
 
   type Query {
     items: [Item]
-    item(_id: String): Item
+    item(_id: ID): Item
     users: [User]
-    user(_id: String): User
+    user(_id: ID): User
   }
   
   type Auth {
@@ -52,7 +53,7 @@ const typeDefs = gql`
     deleteItem(itemId: ID!): Item
     updateItem(_id: ID!, name: String, description: String, location: String, image: String): Item
     addDibToItem(itemId: ID!, dibbedBy: ID!): Item
-    removeCommentFromItem(commenterId: ID!, itemId: ID!): Item
+    removeCommentFromItem(commentId: ID!, itemId: ID!): Item
     addCommentToItem(commenterId: ID!, itemId: ID!, content: String!): Item
     removeDibFromItem(itemId: ID!, dibbedBy: ID!): Item
     addDibToUser(userId: ID!, itemId: ID!): User

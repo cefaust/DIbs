@@ -85,7 +85,7 @@ const resolvers = {
     removeCommentFromItem: async (parent, args) => {
       const item = await Item.findOneAndUpdate(
         { _id: args.itemId },
-        { $pull: { comments: { comment_by: args.commenterId } } },
+        { $pull: { comments: { _id: args.commentId } } },
         { new: true }
       )
       return item;
