@@ -18,7 +18,7 @@ const user = data ? data.user : null;
 if(user) {
   return (
     <div>
-      <div >
+      <div className='gradient-custom vh-100'>
       <h1>Profile</h1>
       {
         ProfilePage === 'dibs' ? 
