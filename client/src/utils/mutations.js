@@ -2,13 +2,12 @@ import { gql } from '@apollo/client';
 
 export const CREATE_ITEM = gql`
   mutation createItem($userId: ID!, $name: String!, $description: String!, $location: String, 
-        $image: String) {
-    createItem(userId: $userId name: $name, description: $description, location: $location, image: $image) {
+      ) {
+    createItem(userId: $userId name: $name, description: $description, location: $location) {
       _id
       name
       description
       location
-      image
       dibbed {
         date_dibbed
         dibbed_by
@@ -30,7 +29,6 @@ export const ADD_ITEM_TO_USER = gql`
       password
       name
       dibsCalled
-      items
     }
   }
 `
@@ -43,7 +41,9 @@ export const REMOVE_ITEM_FROM_USER = gql`
       password
       name
       dibsCalled
-      items
+      items {
+        _id
+      }
     }
   }
 `
@@ -149,26 +149,6 @@ export const ADD_COMMENT_TO_ITEM = gql`
   }
 `;
 
-export const REMOVE_COMMENT_FROM_ITEM = gql`
-  mutation removeCommentFromItem($commentId: ID!, $itemId: ID!) {
-    removeCommentFromItem(commentId: $commentId, itemId: $itemId) {
-      name
-      description
-      location
-      image
-      dibbed {
-        date_dibbed
-        dibbed_by
-      }
-      comments {
-        comment_by
-        content
-        date_created
-      }
-    }
-  }
-`;
-
 export const ADD_DIB_TO_USER = gql`
   mutation addDibToUser($itemId: ID!) {
     addDibToUser(itemId: $itemId) {
@@ -202,6 +182,14 @@ export const REMOVE_DIB_FROM_USER = gql`
       dibsCalled
       items {
         _id
+        name
+        description
+        location
+        image
+        date_created
+        dibbed {
+          date_dibbed
+        }
       }
     }
   } 
@@ -218,6 +206,14 @@ export const CREATE_USER = gql`
         dibsCalled
         items {
           _id
+          name
+          description
+          location
+          image
+          date_created
+          dibbed {
+            date_dibbed
+          }
         }
       }
     }
@@ -233,11 +229,7 @@ mutation login($email: String! $password: String!) {
       email
       password
       name
-      dibsCalled
-      items {
-        _id
       }
     }
   }
-}
 `;

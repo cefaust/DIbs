@@ -32,7 +32,13 @@ if(user) {
           </div>
       }
       </div>
+
+      <div>
+        {ProfilePage === "Home" ? (<h1>home</h1>) : (<DibsList data={items} />)}
+      </div>
     </div>
+
+    
   );
 } else {
   return(<h1>No user</h1>)
