@@ -17,9 +17,10 @@ export default function SignUp(props) {
         name: formState.name
       },
     });
+    console.log(mutationResponse)
     const token = mutationResponse.data.createUser.token;
-        Auth.login(token);
-    };
+    Auth.login(token);
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;

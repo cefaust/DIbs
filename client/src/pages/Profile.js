@@ -15,6 +15,7 @@ const { loading, data } = useQuery(QUERY_USER, {
 
 const user = data ? data.user : null;
 
+console.log(user)
 if(user) {
   return (
     <div>
