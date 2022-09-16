@@ -11,9 +11,10 @@ function NavTabs() {
     if (Auth.loggedIn()) {
       return (
         <ul className='nav nav-pills'>
-          <li className='nav-item'>
+          <li className='nav-item '>
             <Link
               to='/'
+              id='textColor'
               className={currentPage === '/' ? 'nav-link active' : 'nav-link'}>
               Home
             </Link>
@@ -21,6 +22,7 @@ function NavTabs() {
           <li className="nav-item">
            <Link
              to='/'
+             id='textColor'
              className={'nav-link'}
              onClick={() => Auth.logout()}
             >
@@ -29,23 +31,17 @@ function NavTabs() {
           </li>
           <li className='nav-item'>
             <Link
-              to='/SignUp'
-              className={currentPage === '/SignUp' ? 'nav-link active' : 'nav-link'}
-              >
-              Sign Up
-            </Link>
-          </li>
-          <li className='nav-item'>
-            <Link
-              className={currentPage === '/Profile' ? 'nav-link active' : 'nav-link'}
-              to='/Profile'>
+              to='/Profile'
+              id='textColor'
+              className={currentPage === '/Profile' ? 'nav-link active' : 'nav-link'}>
               Profile
             </Link>
           </li>
           <li className='nav-item'>
             <Link
-              className={currentPage === '/Add-item' ? 'nav-link active' : 'nav-link'}
-              to='/Add-item'>
+              to='/Add-item'
+              id='textColor'
+              className={currentPage === '/Add-item' ? 'nav-link active' : 'nav-link'}>
               Add Item
             </Link>
           </li>
@@ -55,9 +51,10 @@ function NavTabs() {
 
       return (
         <ul className='nav nav-pills'>
-          <li className='nav-item'>
+          <li className='nav-item '>
             <Link
               to='/'
+              id='textColor'
               className={currentPage === '/Home' ? 'nav-link active' : 'nav-link'}
             >
               Home
@@ -65,22 +62,18 @@ function NavTabs() {
           </li>
           <li className='nav-item'>
             <Link
-              className={currentPage === '/Login' ? 'nav-link active' : 'nav-link'} to='/Login'>
+              to='/Login'
+              id='textColor'
+              className={currentPage === '/Login' ? 'nav-link active' : 'nav-link'}>
               Login
             </Link>
           </li>
           <li className='nav-item'>
             <Link
-              className={currentPage === '/SignUp' ? 'nav-link active' : 'nav-link'} to='/SignUp'>
+              to='/signup'
+              id='textColor'
+              className={currentPage === '/SignUp' ? 'nav-link active' : 'nav-link'}>
               Sign Up
-            </Link>
-          </li>
-          <li className='nav-item'>
-            <Link
-              to='/Profile'
-              className={currentPage === '/Profile' ? 'nav-link active' : 'nav-link'}
-            >
-              Profile
             </Link>
           </li>
         </ul>

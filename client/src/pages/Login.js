@@ -30,7 +30,7 @@ export default function Login(props) {
   };
 
   return (
-    <div className="card-body py-2 px-md-5">
+    <div className="card-body py-2 px-md-5 vh-100 gradient-custom">
       <div className="row d-flex justify-content-center m-3">
         <div className="col-lg-8">
           <h2 className="fw-bold mb-5">Please Login!</h2>

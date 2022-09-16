@@ -18,7 +18,7 @@ const { loading, data } = useQuery(QUERY_USER, {
 
   return (
     <div>
-      <div className="m-5">
+      <div className="m-5 vh-100">
       <h1>Welcome {token.data.name}</h1>
       {ProfilePage === 'Home' ? <div><button onClick={() => setProfilePage('Dibs')}>Dibs</button> 
       </div>
