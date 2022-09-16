@@ -18,17 +18,17 @@ const user = data ? data.user : null;
 if(user) {
   return (
     <div>
-      <div className='gradient-custom vh-100'>
+      <div className= 'text-center gradient-custom vh-1000'>
       <h1>Profile</h1>
       {
         ProfilePage === 'dibs' ? 
           <div>
-            <button onClick={() => setProfilePage('posts')}>Dibs</button> 
+            <button className= 'btn btn-primary m-3'onClick={() => setProfilePage('posts')}>My Dibs</button> 
             <DibsList itemIds={user.dibsCalled} />
           </div>
         : 
           <div>
-            <button onClick={() => setProfilePage('dibs')}>My Posts</button>
+            <button className = 'btn btn-primary m-3' onClick={() => setProfilePage('dibs')}>My Posts</button>
             <PostList itemIds={user.items} />
           </div>
       }

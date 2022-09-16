@@ -12,12 +12,15 @@ const DibsList = ({ itemIds, userId }) => {
     // return <h3>No Dibs Yet</h3>;
   } else {
     return (
-      <div>
+      <div className='container text-center'>
+        <h3>Your Dibs</h3>
+        <div className='row justify-content-center'>
         {
           itemIds.map((itemId) => (
             <SingleDib itemId={itemId} key={itemId} />
           ))
         }
+        </div>
       </div>
     )
   }

@@ -30,21 +30,23 @@ const SingleDib = ({ itemId }) => {
     return <h3>No Item Yet</h3>;
   } else {
     return (
-      <div>
-        <div className="card mb-3">
+      
+        <div className="card m-3 p-2 col-sm-10 col-lg-4">
             <div className="card-body">
                 <h5 className="card-title">{item.data.item.name}</h5>
                 <p className="card-text">{item.data.item.description}</p>
+                
                 <Link
-                className="btn btn-primary"
+                className="btn btn-primary m-2"
                 to={`/items/${item.data.item._id}`}> View Item
                 </Link>
-                <button id={item.data.item._id} className="btn btn-primary" onClick={(e) => {handleRemoveDibs(e)}}>
+                <button id={item.data.item._id} className="btn btn-primary m-2" onClick={(e) => {handleRemoveDibs(e)}}>
                   Remove Dibs 
                 </button>
+                
             </div>
         </div>
-      </div>
+  
     )
   }
 }

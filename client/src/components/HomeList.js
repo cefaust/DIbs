@@ -53,15 +53,13 @@ const HomeList = ({ items }) => {
                 <div className="card-body">
                     <h5 className="card-title">{item.name}</h5>
                     <p className="card-text">{item.description}</p>
-                    <div className='d-flex justify-content-evenly'>
                         <Link
-                        className="btn btn-primary"
+                        className="btn btn-primary m-2"
                         to={`/items/${item._id}`}> View Item
                         </Link>
-                        <button id={item._id} className="btn btn-primary" onClick={(e) => {handleAddDibs(e)}}>
+                        <button id={item._id} className="btn btn-primary m-2" onClick={(e) => {handleAddDibs(e)}}>
                         Add to Dibs 
                         </button> 
-                    </div>
                     <p className="card-text"><small className="text-muted">{item.user} Posted at {formatDate(item.date_created)}</small></p>
                 </div>
             </div>

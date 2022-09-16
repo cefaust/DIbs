@@ -39,24 +39,22 @@ const SinglePost = ({ itemId }) => {
   } else {
     console.log(data)
     return (
-      <div>
-        <div className="card mb-3">
+        <div className="card m-3 p-2 col-sm-10 col-lg-4">
             <div className="card-body">
                 <h5 className="card-title">{data.item.name}</h5>
                 <p className="card-text">{data.item.description}</p>
                 <Link
-                className="btn btn-primary"
+                className="btn btn-primary m-2"
                 to={`/items/${data.item._id}`}> View Item
                 </Link>
-                <button id={data.item._id} className="btn btn-primary" onClick={(e) => {handleRemovePost(e)}}>
+                <button id={data.item._id} className="btn btn-primary m-2" onClick={(e) => {handleRemovePost(e)}}>
                   Remove Item
                 </button>
                 <Link
-                  className="btn btn-primary"
+                  className="btn btn-primary m-2"
                   to={`/update-item/${data.item._id}`}> Update Item
                 </Link>
             </div>
-        </div>
       </div>
     )
   }
