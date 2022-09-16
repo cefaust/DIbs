@@ -2,13 +2,12 @@ import { gql } from '@apollo/client';
 
 export const CREATE_ITEM = gql`
   mutation createItem($userId: ID!, $name: String!, $description: String!, $location: String, 
-        $image: String) {
-    createItem(userId: $userId name: $name, description: $description, location: $location, image: $image) {
+      ) {
+    createItem(userId: $userId name: $name, description: $description, location: $location) {
       _id
       name
       description
       location
-      image
       dibbed {
         date_dibbed
         dibbed_by
@@ -30,17 +29,6 @@ export const ADD_ITEM_TO_USER = gql`
       password
       name
       dibsCalled
-      items {
-        _id
-        name
-        description
-        location
-        image
-        date_created
-        dibbed {
-          date_dibbed
-        }
-      }
     }
   }
 `
@@ -55,14 +43,6 @@ export const REMOVE_ITEM_FROM_USER = gql`
       dibsCalled
       items {
         _id
-        name
-        description
-        location
-        image
-        date_created
-        dibbed {
-          date_dibbed
-        }
       }
     }
   }
@@ -225,7 +205,7 @@ mutation login($email: String! $password: String!) {
       name
       dibsCalled
       items
+      }
     }
   }
-}
 `;
