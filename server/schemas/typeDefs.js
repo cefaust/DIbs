@@ -2,10 +2,10 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type Comment {
-    _id: ID!
-    comment_by: ID!
-    content: String!
-    date_created: String!
+    _id: ID
+    comment_by: ID
+    content: String
+    date_created: String
   }
 
   type Dib {

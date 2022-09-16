@@ -14,16 +14,10 @@ const resolvers = {
       return User.find({});
     },
     user: async (parent, { _id }) => {
+      console.log("getting users!")
       const params = _id ? { _id } : {};
       return User.findOne(params);
     },
-    me: async (_, args, context) => {
-      if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id }).select('-__v -password');
-        return userData;
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    }
   },
   Mutation: {
     createItem: async (parent, args) => {
@@ -92,15 +86,14 @@ const resolvers = {
     removeCommentFromItem: async (parent, args) => {
       const item = await Item.findOneAndUpdate(
         { _id: args.itemId },
-        { $pull: { comments: { _id: args.commentId } } },
+        { $pull: { comments: { comment_by: args.commenterId } } },
         { new: true }
       )
       return item;
     },
-    addDibToUser: async (parent, args, context) => {
-      console.log(context.user)
+    addDibToUser: async (parent, args) => {
       const user = await User.findOneAndUpdate(
-        { _id: context.user._id },
+        { _id: args.userId },
         { $addToSet: { dibsCalled: args.itemId } },
         { new: true }
       )
@@ -121,10 +114,11 @@ const resolvers = {
       return {token, user};
     },
     login: async (parent, { email, password }) => {
+      console.log('in here!!!')
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw new AuthenticationError('No user found with this email address');
       }
 
       const correctPw = await user.isCorrectPassword(password);
@@ -136,7 +130,7 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
-    }
+    },
   },
 };
 

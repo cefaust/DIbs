@@ -1,30 +1,37 @@
-import { useMutation, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { useState } from 'react';
 import { QUERY_USER } from '../utils/queries';
 import DibsList from '../components/DibsList'
 import Auth from '../utils/auth';
 
 export default function Profile() {
-const [ProfilePage, setProfilePage] = useState('Home');
+const [ProfilePage, setProfilePage] = useState('dibs');
 const token = Auth.loggedIn() ? Auth.getProfile() : null;
 
 const { loading, data } = useQuery(QUERY_USER, {
   variables: { _id: token.data._id}
 });
-    const items = data?.user || [];
 
+const user = data ? data.user : null;
 
-
-
+if(user) {
   return (
     <div>
-      <div className="m-5">
-      <h1>Welcome {token.data.name}</h1>
-      {ProfilePage === 'Home' ? <div><button onClick={() => setProfilePage('Dibs')}>Dibs</button> 
+      <div >
+      <h1>Profile</h1>
+      {
+        ProfilePage === 'dibs' ? 
+          <div>
+            <button onClick={() => setProfilePage('posts')}>Dibs</button> 
+            <DibsList itemIds={user.dibsCalled} userId={token.data._id} />
+          </div>
+        : 
+          <div>
+            <button onClick={() => setProfilePage('dibs')}>My Posts</button>
+            {/* <PostList /> */}
+          </div>
+      }
       </div>
-      : <button onClick={() => setProfilePage('Home')}>My Posts</button>}
-      </div>
-
 
       <div>
         {ProfilePage === "Home" ? (<h1>home</h1>) : (<DibsList data={items} />)}
@@ -33,4 +40,8 @@ const { loading, data } = useQuery(QUERY_USER, {
 
     
   );
+} else {
+  return(<h1>No user</h1>)
+}
+  
 }
