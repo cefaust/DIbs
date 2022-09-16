@@ -11,7 +11,7 @@ const Home = () => {
 
     return(
         <main>
-        <div className="flex-row justify-center">
+        <div className="flex-row justify-center vh-100 gradient-custom">
           <div className="col-12 col-md-10 my-1">
             {loading ? (
               <div>Loading...</div>
