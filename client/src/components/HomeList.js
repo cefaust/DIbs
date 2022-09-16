@@ -1,51 +1,39 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client';
-import { ADD_DIB_TO_USER } from "../utils/mutations"
+import { ADD_DIB_TO_USER, ADD_DIB_TO_ITEM } from "../utils/mutations"
 import Auth from '../utils/auth';
 
 const HomeList = ({ items }) => {
 
-    const [addDibs, { error }] = useMutation(ADD_DIB_TO_USER);
+    const [addDibToUser, { error }] = useMutation(ADD_DIB_TO_USER);
+    const [addDibToItem, { error2 }] = useMutation(ADD_DIB_TO_ITEM);
     const token = Auth.loggedIn() ? Auth.getProfile() : null;
 
     async function handleAddDibs(e) {
         try {
-           const { data } = await addDibs({ 
+        const userData = await addDibToUser({ 
             variables : {
                 itemId: e.target.id,
                 userId: token.data._id
             }
-           })
+        })
+        const itemData  = await addDibToItem({
+            variables: {itemId: e.target.id,
+            dibbedBy: token.data._id
+        }})
+        console.log(userData.data, itemData.data)
 
-  async function handleAddDibs(e) {
-    try {
-       const userData = await addDibToUser({ 
-        variables : {
-            itemId: e.target.id
+        } catch (error) {
+            console.log(error)
         }
-       })
-       const itemData  = await addDibToItem({
-          variables: {itemId: e.target.id,
-          dibbedBy: Auth.getProfile().data._id
-       }})
-       console.log(userData.data, itemData.data)
 
-    } catch (error) {
-        console.log(error)
     }
-
-    console.log(e.target.id)
-}
-
-
 
     
     if (!items.length) {
         return <h3>Nothing to Call Dibs on Yet</h3>;
     }
-
-
     
     return (
         <div className='container text-center'>
@@ -76,4 +64,4 @@ const HomeList = ({ items }) => {
     )
 };
 
-export default HomeList
+export default HomeList;
