@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CREATE_ITEM, ADD_ITEM_TO_USER} from '../utils/mutations';
+import { CREATE_ITEM, ADD_ITEM_TO_USER } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 
@@ -13,7 +13,7 @@ export default function AddItem() {
   });
 
   const [createItem] = useMutation(CREATE_ITEM);
-  const[addItemToUser] = useMutation(ADD_ITEM_TO_USER)
+  const [addItemToUser] = useMutation(ADD_ITEM_TO_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -34,7 +34,6 @@ export default function AddItem() {
       })
       const token = createItemMutationResponse.data.createItem.token;
           Auth.login(token);
-        console.log(addItemToUserMutationResponse)
     } catch (e) {
       console.log(e);
     }

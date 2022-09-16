@@ -30,7 +30,7 @@ const typeDefs = gql`
     password: String!
     name: String!
     dibsCalled: [String]
-    items : [Item]
+    items: [String]
   }
 
   type Query {
@@ -57,7 +57,7 @@ const typeDefs = gql`
     removeCommentFromItem(commentId: ID!, itemId: ID!): Item
     addCommentToItem(commenterId: ID!, itemId: ID!, content: String!): Item
     removeDibFromItem(itemId: ID!, dibbedBy: ID!): Item
-    addDibToUser(itemId: ID!): User
+    addDibToUser(itemId: ID!, userId: ID!): User
     removeDibFromUser(userId: ID!, itemId: ID!): User
     createUser( name: String!, password: String!, email: String!): Auth
     login(email: String!, password: String!): Auth
