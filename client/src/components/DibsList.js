@@ -9,7 +9,7 @@ const DibsList = ({ itemIds, userId }) => {
   const token = Auth.loggedIn() ? Auth.getProfile() : null;
   
   if (!itemIds) {
-    return <h3>No Dibs Yet</h3>;
+    // return <h3>No Dibs Yet</h3>;
   } else {
     return (
       <div>

@@ -35,7 +35,7 @@ if(user) {
       </div>
 
       <div>
-        {ProfilePage === "Home" ? (<h1>home</h1>) : (<DibsList data={items} />)}
+        {ProfilePage === "Home" ? (<h1>home</h1>) : (<DibsList data={user.items} />)}
       </div>
     </div>
 

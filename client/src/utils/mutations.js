@@ -41,9 +41,7 @@ export const REMOVE_ITEM_FROM_USER = gql`
       password
       name
       dibsCalled
-      items {
-        _id
-      }
+      items
     }
   }
 `
