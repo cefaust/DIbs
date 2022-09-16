@@ -7,7 +7,6 @@ export const CREATE_ITEM = gql`
       _id
       name
       description
-      location
       dibbed {
         date_dibbed
         dibbed_by

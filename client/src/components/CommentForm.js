@@ -17,8 +17,6 @@ const CommentForm = (props) => {
           commenterId: Auth.getProfile().data._id
 
       }});
-      const token = mutationResponse.data.addCommentToItem.token;
-        Auth.login(token);
     };
 
   const handleChange = (event) => {

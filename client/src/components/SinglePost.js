@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMutation, useQuery } from '@apollo/client';
-import { QUERY_ITEM } from '../utils/queries';
+import { QUERY_ITEM, QUERY_ITEMS } from '../utils/queries';
 import { DELETE_ITEM, REMOVE_ITEM_FROM_USER } from '../utils/mutations';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
@@ -25,8 +25,10 @@ const SinglePost = ({ itemId }) => {
       await deleteItem({
         variables: {
             itemId: e.target.id
-        }
-      })
+        },
+        refetchQueries: [{query: QUERY_ITEMS}]
+      }
+      )
    } catch (error) {
       console.log(error)
    }
