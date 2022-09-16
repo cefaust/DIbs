@@ -45,7 +45,7 @@ export default function AddItem() {
   };
 
   return (
-    <div className='card-body py-5 px-md-5'>
+    <div className='card-body py-5 px-md-5 gradient-custom vh-100'>
     <div className="row d-flex justify-content-center">
       <div className="col-lg-8">
       <h3 className='mb-5 fw-bold'>Add An Item For Dibbing</h3>
