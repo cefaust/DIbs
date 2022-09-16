@@ -114,6 +114,7 @@ const resolvers = {
       return {token, user};
     },
     login: async (parent, { email, password }) => {
+      console.log('in here!!!')
       const user = await User.findOne({ email });
 
       if (!user) {
