@@ -1,43 +1,39 @@
 import React, { useState } from 'react';
-import { CREATE_ITEM, ADD_ITEM_TO_USER } from '../utils/mutations';
+import { UPDATE_ITEM, ADD_ITEM_TO_USER} from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
-// import { QUERY_ITEMS } from '../utils/queries';
-
-export default function AddItem() {
-  const navigate = useNavigate();
+export default function UpdateItemForm() {
+    const navigate = useNavigate();
+    const { itemId } = useParams();
 
   const [formState, setFormState] = useState({
     itemName: '',
     itemDesc: '',
   });
 
-  const [createItem] = useMutation(CREATE_ITEM);
-  const [addItemToUser] = useMutation(ADD_ITEM_TO_USER);
+  const [updateItem] = useMutation(UPDATE_ITEM);
+
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const createItemMutationResponse = await createItem({
+      const MutationResponse = await updateItem({
         variables: {
-          name: formState.itemName,
-          description: formState.itemDesc,
-          userId: Auth.getProfile().data._id
+            _id: itemId,
+            name: formState.itemName,
+            description: formState.itemDesc,
+            userId: Auth.getProfile().data._id
         }
 
       });
-      const addItemToUserMutationResponse = await addItemToUser({
-        variables:{
-          userId: Auth.getProfile().data._id,
-          itemId: createItemMutationResponse.data.createItem._id
-        }
-      })
-      navigate('/Profile');
+        const token = MutationResponse.data.createItem.token;
+        Auth.login(token);
     } catch (e) {
       console.log(e);
     }
+    navigate('/Profile')
   };
 
   const handleChange = (e) => {
@@ -50,7 +46,7 @@ export default function AddItem() {
     <div className='card-body py-5 px-md-5'>
     <div className="row d-flex justify-content-center">
       <div className="col-lg-8">
-      <h3 className='mb-5 fw-bold'>Add An Item For Dibbing</h3>
+      <h3 className='mb-5 fw-bold'>Update Item For Dibbing</h3>
 
       <form
         className="d-flex flex-column"
@@ -81,7 +77,7 @@ export default function AddItem() {
 
         <div className="">
           <button className="btn btn-primary btn-block mt-3" type="submit">
-            Add Item
+                Update Item
           </button>
       </div>
     </form>
@@ -90,3 +86,4 @@ export default function AddItem() {
   </div>
   );
 }
+

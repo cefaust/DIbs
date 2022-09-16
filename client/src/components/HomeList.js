@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client';
 import { ADD_DIB_TO_USER, ADD_DIB_TO_ITEM } from "../utils/mutations"
 import Auth from '../utils/auth';
+import moment from 'moment';
 
 const HomeList = ({ items }) => {
 
@@ -30,6 +31,13 @@ const HomeList = ({ items }) => {
 
     }
 
+    function formatDate(unformattedDate) {
+        console.log(unformattedDate)
+        let newDate = moment(unformattedDate, "x").format("MMM Do YY");
+        console.log(newDate);
+        return newDate;
+    }
+
     
     if (!items.length) {
         return <h3>Nothing to Call Dibs on Yet</h3>;
@@ -54,7 +62,7 @@ const HomeList = ({ items }) => {
                         Add to Dibs 
                         </button> 
                     </div>
-                    <p className="card-text"><small className="text-muted">{item.user} Posted at {item.date_created}</small></p>
+                    <p className="card-text"><small className="text-muted">{item.user} Posted at {formatDate(item.date_created)}</small></p>
                 </div>
             </div>
             ) )}

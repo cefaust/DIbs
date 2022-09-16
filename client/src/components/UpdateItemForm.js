@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { UPDATE_ITEM, ADD_ITEM_TO_USER} from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
-
-// import { QUERY_ITEMS } from '../utils/queries';
+import { useParams } from 'react-router-dom';
 
 export default function UpdateItemForm() {
+  const { itemId } = useParams();
+  console.log(itemId)
 
   const [formState, setFormState] = useState({
     itemName: '',
@@ -17,9 +18,11 @@ export default function UpdateItemForm() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    console.log(itemId)
     try {
-      const MutationResponse = await createItem({
+      const MutationResponse = await updateItem({
         variables: {
+          _id: itemId,
           name: formState.itemName,
           description: formState.itemDesc,
           userId: Auth.getProfile().data._id
@@ -28,7 +31,6 @@ export default function UpdateItemForm() {
       });
       const token = MutationResponse.data.createItem.token;
           Auth.login(token);
-        console.log(addItemToUserMutationResponse)
     } catch (e) {
       console.log(e);
     }

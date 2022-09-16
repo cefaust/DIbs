@@ -180,6 +180,7 @@ export const REMOVE_DIB_FROM_USER = gql`
 export const CREATE_USER = gql`
   mutation createUser($email: String!, $password: String!, $name: String!) {
     createUser(email: $email, password: $password, name: $name) {
+      token
       user {
         _id
         email

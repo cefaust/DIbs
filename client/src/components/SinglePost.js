@@ -10,7 +10,7 @@ const SinglePost = ({ itemId }) => {
   const [removePost, { error }] = useMutation(REMOVE_ITEM_FROM_USER);
   const [deleteItem, { error2 }] = useMutation(DELETE_ITEM);
 
-  const item = useQuery(QUERY_ITEM, {
+  const {loading, data} = useQuery(QUERY_ITEM, {
       variables: { _id: itemId}
   });
 
@@ -32,22 +32,27 @@ const SinglePost = ({ itemId }) => {
    }
   }
   
-  if (!item.data) {
+  if (loading || !data.item) {
     return <h3>No Item Yet</h3>;
   } else {
+    console.log(data)
     return (
       <div>
         <div className="card mb-3">
             <div className="card-body">
-                <h5 className="card-title">{item.data.item.name}</h5>
-                <p className="card-text">{item.data.item.description}</p>
+                <h5 className="card-title">{data.item.name}</h5>
+                <p className="card-text">{data.item.description}</p>
                 <Link
                 className="btn btn-primary"
-                to={`/items/${item.data.item._id}`}> View Item
+                to={`/items/${data.item._id}`}> View Item
                 </Link>
-                <button id={item.data.item._id} className="btn btn-primary" onClick={(e) => {handleRemovePost(e)}}>
+                <button id={data.item._id} className="btn btn-primary" onClick={(e) => {handleRemovePost(e)}}>
                   Remove Item
                 </button>
+                <Link
+                  className="btn btn-primary"
+                  to={`/update-item/${data.item._id}`}> Update Item
+                </Link>
             </div>
         </div>
       </div>

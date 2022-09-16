@@ -16,6 +16,8 @@ class AuthService {
     isTokenExpired(token) {
         try {
           const decoded = decode(token);
+          console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+          console.log(decoded);
           if (decoded.exp < Date.now() / 1000) {
             localStorage.removeItem('id_token');
             return true;
