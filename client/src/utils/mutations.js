@@ -60,7 +60,11 @@ export const DELETE_ITEM = gql`
         date_dibbed
         dibbed_by
       }
-      comments 
+      comments {
+        comment_by
+        content
+        date_created
+      }
     }
   }
 `;
@@ -170,24 +174,14 @@ export const REMOVE_COMMENT_FROM_ITEM = gql`
 `;
 
 export const ADD_DIB_TO_USER = gql`
-  mutation addDibToUser($itemId: ID!) {
-    addDibToUser(itemId: $itemId) {
+  mutation addDibToUser($itemId: ID!, $userId: ID!) {
+    addDibToUser(itemId: $itemId, userId: $userId) {
       _id
       email
       password
       name
       dibsCalled
-      items {
-        _id
-        name
-        description
-        location
-        image
-        date_created
-        dibbed {
-          date_dibbed
-        }
-      }
+      items
     }
   } 
 `;
@@ -200,9 +194,7 @@ export const REMOVE_DIB_FROM_USER = gql`
       password
       name
       dibsCalled
-      items {
-        _id
-      }
+      items
     }
   } 
 `;
@@ -216,9 +208,7 @@ export const CREATE_USER = gql`
         password
         name
         dibsCalled
-        items {
-          _id
-        }
+        items
       }
     }
   }
@@ -234,9 +224,7 @@ mutation login($email: String! $password: String!) {
       password
       name
       dibsCalled
-      items {
-        _id
-      }
+      items
     }
   }
 }

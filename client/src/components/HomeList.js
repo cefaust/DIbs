@@ -2,17 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client';
 import { ADD_DIB_TO_USER } from "../utils/mutations"
-
+import Auth from '../utils/auth';
 
 const HomeList = ({ dibs }) => {
 
     const [addDibs, { error }] = useMutation(ADD_DIB_TO_USER);
+    const token = Auth.loggedIn() ? Auth.getProfile() : null;
 
     async function handleAddDibs(e) {
         try {
            const { data } = await addDibs({ 
             variables : {
-                itemId: e.target.id
+                itemId: e.target.id,
+                userId: token.data._id
             }
            })
 

@@ -49,17 +49,7 @@ export const QUERY_USERS = gql`
     _id
     email
     name
-    items {
-      _id
-      name
-      description
-      location
-      image
-      date_created
-      dibbed {
-        date_dibbed
-      }
-    }
+    items
   }
   `;
 
@@ -70,17 +60,7 @@ export const QUERY_USER= gql`
       email
       name 
       dibsCalled
-      items {
-        _id
-        name
-        description
-        location
-        image
-        date_created
-        dibbed {
-          date_dibbed
-        }
-      }
+      items
     }
   }
 `;

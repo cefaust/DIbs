@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CREATE_ITEM } from '../utils/mutations';
+import { CREATE_ITEM, ADD_ITEM_TO_USER } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 
@@ -13,6 +13,7 @@ export default function AddItem() {
   });
 
   const [createItem] = useMutation(CREATE_ITEM);
+  const [addItemToUser] = useMutation(ADD_ITEM_TO_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -22,6 +23,13 @@ export default function AddItem() {
           name: formState.itemName,
           description: formState.itemDesc,
           userId: Auth.getProfile().data._id
+        }
+      })
+      console.log(mutationResponse, Auth.getProfile().data._id)
+      await addItemToUser({
+        variables: {
+          userId: Auth.getProfile().data._id,
+          itemId: mutationResponse.data.createItem._id
         }
       })
       const token = mutationResponse.data.createItem.token;

@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client';
 import { useState } from 'react';
 import { QUERY_USER } from '../utils/queries';
 import DibsList from '../components/DibsList'
+import PostList from '../components/PostList';
 import Auth from '../utils/auth';
 
 export default function Profile() {
@@ -23,12 +24,12 @@ if(user) {
         ProfilePage === 'dibs' ? 
           <div>
             <button onClick={() => setProfilePage('posts')}>Dibs</button> 
-            <DibsList itemIds={user.dibsCalled} userId={token.data._id} />
+            <DibsList itemIds={user.dibsCalled} />
           </div>
         : 
           <div>
             <button onClick={() => setProfilePage('dibs')}>My Posts</button>
-            {/* <PostList /> */}
+            <PostList itemIds={user.items} />
           </div>
       }
       </div>
