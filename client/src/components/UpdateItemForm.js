@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
-import { CREATE_ITEM, ADD_ITEM_TO_USER} from '../utils/mutations';
+import { UPDATE_ITEM, ADD_ITEM_TO_USER} from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 
 // import { QUERY_ITEMS } from '../utils/queries';
 
-export default function AddItem() {
+export default function UpdateItemForm() {
 
   const [formState, setFormState] = useState({
     itemName: '',
     itemDesc: '',
   });
 
-  const [createItem] = useMutation(CREATE_ITEM);
-  const[addItemToUser] = useMutation(ADD_ITEM_TO_USER)
+  const [updateItem] = useMutation(UPDATE_ITEM);
+
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const createItemMutationResponse = await createItem({
+      const MutationResponse = await createItem({
         variables: {
           name: formState.itemName,
           description: formState.itemDesc,
@@ -26,13 +26,7 @@ export default function AddItem() {
         }
 
       });
-      const addItemToUserMutationResponse = await addItemToUser({
-        variables:{
-          userId: Auth.getProfile().data._id,
-          itemId: createItemMutationResponse.data.createItem._id
-        }
-      })
-      const token = createItemMutationResponse.data.createItem.token;
+      const token = MutationResponse.data.createItem.token;
           Auth.login(token);
         console.log(addItemToUserMutationResponse)
     } catch (e) {
@@ -50,7 +44,7 @@ export default function AddItem() {
     <div className='card-body py-5 px-md-5'>
     <div className="row d-flex justify-content-center">
       <div className="col-lg-8">
-      <h3 className='mb-5 fw-bold'>Add An Item For Dibbing</h3>
+      <h3 className='mb-5 fw-bold'>Update Item For Dibbing</h3>
 
       <form
         className="d-flex flex-column"
@@ -81,7 +75,7 @@ export default function AddItem() {
 
         <div className="">
           <button className="btn btn-primary btn-block mt-3" type="submit">
-            Add Item
+            Update Item
           </button>
       </div>
     </form>
@@ -90,3 +84,4 @@ export default function AddItem() {
   </div>
   );
 }
+
