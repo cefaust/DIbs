@@ -14,7 +14,6 @@ const resolvers = {
       return User.find({});
     },
     user: async (parent, { _id }) => {
-      console.log("getting users!")
       const params = _id ? { _id } : {};
       return User.findOne(params);
     },

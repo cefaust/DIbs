@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { CREATE_ITEM, ADD_ITEM_TO_USER } from '../utils/mutations';
+import { QUERY_USERS } from '../utils/queries';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { useNavigate } from 'react-router-dom';
-
-// import { QUERY_ITEMS } from '../utils/queries';
 
 export default function AddItem() {
   const navigate = useNavigate();
@@ -26,9 +25,8 @@ export default function AddItem() {
           description: formState.itemDesc,
           userId: Auth.getProfile().data._id
         }
-
       });
-      const addItemToUserMutationResponse = await addItemToUser({
+      addItemToUser({
         variables:{
           userId: Auth.getProfile().data._id,
           itemId: createItemMutationResponse.data.createItem._id
