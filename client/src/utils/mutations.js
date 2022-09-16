@@ -30,7 +30,17 @@ export const ADD_ITEM_TO_USER = gql`
       password
       name
       dibsCalled
-      items
+      items {
+        _id
+        name
+        description
+        location
+        image
+        date_created
+        dibbed {
+          date_dibbed
+        }
+      }
     }
   }
 `
@@ -43,7 +53,17 @@ export const REMOVE_ITEM_FROM_USER = gql`
       password
       name
       dibsCalled
-      items
+      items {
+        _id
+        name
+        description
+        location
+        image
+        date_created
+        dibbed {
+          date_dibbed
+        }
+      }
     }
   }
 `
@@ -136,26 +156,6 @@ export const ADD_COMMENT_TO_ITEM = gql`
   mutation addCommentToItem($commenterId: ID!, $itemId: ID!, $content: String!) {
     addCommentToItem(commenterId: $commenterId, itemId: $itemId, content: $content) {
       _id
-      name
-      description
-      location
-      image
-      dibbed {
-        date_dibbed
-        dibbed_by
-      }
-      comments {
-        comment_by
-        content
-        date_created
-      }
-    }
-  }
-`;
-
-export const REMOVE_COMMENT_FROM_ITEM = gql`
-  mutation removeCommentFromItem($commentId: ID!, $itemId: ID!) {
-    removeCommentFromItem(commentId: $commentId, itemId: $itemId) {
       name
       description
       location

@@ -30,8 +30,8 @@ export default function SignUp(props) {
   };
 
   return (
-        <div className="card-body py-5 px-md-5">
-          <div className="row d-flex justify-content-center">
+        <div className="card-body py-3 px-md-5">
+          <div className="row d-flex justify-content-center m-3">
             <div className="col-lg-8">
               <h2 className="fw-bold mb-5">Sign up now</h2>
               <form onSubmit={handleFormSubmit}>
