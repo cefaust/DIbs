@@ -3,6 +3,14 @@ import React from 'react';
 import Auth from '../utils/auth'
 
 import { QUERY_ITEM } from '../utils/queries';
+import moment from 'moment';
+
+function formatDate(unformattedDate) {
+  console.log(unformattedDate)
+  let newDate = moment(unformattedDate, "x").format("MMM Do YY");
+  console.log(newDate);
+  return newDate;
+}
 
 
 
@@ -29,7 +37,7 @@ const CommentList = ({ comments = []}) => {
                 <h5 className="card-header">
                    Someone commented{' '}
                   <span style={{ fontSize: '0.825rem' }}>
-                    on {comment.date_created}
+                    on {formatDate(comment.date_created)}
                   </span>
                 </h5>
                 <p className="card-body">{comment.content}</p>
