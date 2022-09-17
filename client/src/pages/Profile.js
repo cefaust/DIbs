@@ -23,12 +23,12 @@ if(user) {
       {
         ProfilePage === 'dibs' ? 
           <div>
-            <button className= 'btn btn-primary m-3'onClick={() => setProfilePage('posts')}>My Dibs</button> 
+            <button className= 'btn btn-primary m-3'onClick={() => setProfilePage('posts')}>View Posts</button> 
             <DibsList itemIds={user.dibsCalled} />
           </div>
         : 
           <div>
-            <button className = 'btn btn-primary m-3' onClick={() => setProfilePage('dibs')}>My Posts</button>
+            <button className = 'btn btn-primary m-3' onClick={() => setProfilePage('dibs')}>View Dibs</button>
             <PostList itemIds={user.items} />
           </div>
       }

@@ -13,7 +13,7 @@ const DibsList = ({ itemIds, userId }) => {
   } else {
     return (
       <div className='container text-center'>
-        <h3>Your Dibs</h3>
+        <h3>Your Posts</h3>
         <div className='row justify-content-center'>
         {
           itemIds.map((itemId) => (
