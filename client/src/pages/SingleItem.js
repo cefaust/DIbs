@@ -22,7 +22,8 @@ const SingleItem = () => {
     try {
        const userData = await addDibToUser({ 
         variables : {
-            itemId: e.target.id
+            itemId: e.target.id,
+            userId: Auth.getProfile().data._id
         }
        })
        const itemData  = await addDibToItem({

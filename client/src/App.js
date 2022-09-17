@@ -39,7 +39,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className='gradient-custom'>
+        <div className='gradient-custom vh-100'>
             <NavTabs />
             <Routes>
               <Route
